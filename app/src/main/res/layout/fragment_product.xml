@@ -1,22 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ProductFragment">
+    tools:context=".fragment.HomeFragment"
+    android:orientation="vertical"
+    android:weightSum="10"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="#2E9DFF"
+        android:orientation="vertical"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="product fragmnet"
-            android:textColor="@color/black"
-            android:textSize="30dp"
+            android:layout_height="wrap_content"
+            android:background="#2E9DFF"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:weightSum="10"
             android:gravity="center"
-            />
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="VESTMAN"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_weight="8.5"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login"
+                android:src="@drawable/baseline_shopping_cart_24_black"
+                android:layout_gravity="center"
+                android:padding="10dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="40dp"
+            android:paddingTop="20dp"
+            >
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login">
+
+            </androidx.appcompat.widget.SearchView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        >
+
     </LinearLayout>
 
-</FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
