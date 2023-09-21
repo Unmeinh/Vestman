@@ -13,25 +13,29 @@
         android:theme="@style/Theme.Vestman"
         tools:targetApi="31">
         <activity
-            android:name=".screen.Screen_signup"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".screen.Screen_login"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".screen.Screen_navigation"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".screen.Screen_signup"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"></activity>
+        <activity
+            android:name=".screen.Screen_login"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
