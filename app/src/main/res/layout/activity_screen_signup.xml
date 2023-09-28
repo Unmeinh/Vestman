@@ -10,6 +10,16 @@
     android:gravity="center"
     android:layout_margin="20dp"
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fill in your personal information"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="#2E9DFF"
+        android:textStyle="bold"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +51,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="Fullname"
             android:textColorHint="@color/black"
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
@@ -77,7 +87,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Re Password"
+            android:hint="Repeat Password"
             android:textColorHint="@color/black"
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
@@ -100,6 +110,15 @@
             android:text="continue"
             android:textStyle="bold"
             android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/backlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="I already have an account"
+            android:textColor="#2E9DFF"
+            android:gravity="center"
+
             />
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

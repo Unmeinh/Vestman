@@ -10,18 +10,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
         android:background="#2E9DFF"
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#2E9DFF"
             android:orientation="horizontal"
             android:padding="20dp"
             android:weightSum="10"
-            android:gravity="center"
 
             >
             <TextView
@@ -39,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_login"
                 android:src="@drawable/baseline_shopping_cart_24_black"
-                android:layout_gravity="center"
                 android:padding="10dp"
 
                 />
@@ -48,9 +46,19 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="#19000000"
         >
+        <GridView
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rcvProduct"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            />
+
 
     </LinearLayout>
 
