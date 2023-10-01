@@ -1,5 +1,7 @@
 package com.ttonline.vestman.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import com.ttonline.vestman.Arapter.ProductArapter;
 import com.ttonline.vestman.databinding.FragmentHomeBinding;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.screen.Screen_cart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        Context context=getContext();
+        binding.btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, Screen_cart.class);
+                startActivity(intent);
+            }
+        });
         callApiGetProduct();
         return root;
     }
