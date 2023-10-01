@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
+        android:layout_height="match_parent"
+        android:layout_weight="7.5"
         android:background="#2E9DFF"
         android:orientation="vertical"
         >
@@ -61,10 +61,18 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5"
+        android:background="#19000000"
         >
-
+        <GridView
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rcvProduct"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            />
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
