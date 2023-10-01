@@ -28,7 +28,6 @@ public class Screen_navigation extends AppCompatActivity {
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
             switch (item.getItemId()){
                 case R.id.home:
                     replaceFragment(new HomeFragment());
@@ -42,7 +41,6 @@ public class Screen_navigation extends AppCompatActivity {
                     replaceFragment(new AccountFragment());
                     break;
             }
-
             return true;
         });
     }
