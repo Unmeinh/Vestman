@@ -1,8 +1,5 @@
 package com.ttonline.vestman.fragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,12 +16,14 @@ import com.ttonline.vestman.R;
 import com.ttonline.vestman.screen.Screen_chatbot;
 import com.ttonline.vestman.screen.Screen_resetpassword;
 import com.ttonline.vestman.screen.Screen_userinfo;
+import com.ttonline.vestman.screen.Screen_orderhistory;
 
 
 public class AccountFragment extends Fragment {
 
 
-    private TextView txtUserInfo,txtResetPass,txtLogout,txtChatbot;
+    private TextView txtUserInfo,txtResetPass,txtLogout,txtChatbot,tv_OrderHistory;
+
 
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
@@ -52,23 +51,30 @@ public class AccountFragment extends Fragment {
         txtLogout = view.findViewById(R.id.txt_logout);
         txtResetPass = view.findViewById(R.id.txt_resetpass);
         txtChatbot = view.findViewById(R.id.txt_chatbot);
+        tv_OrderHistory = view.findViewById(R.id.txt_orderhistory);
 
         txtUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Screen_userinfo.class));
+                startActivity(new Intent(getContext(), Screen_userinfo.class));
             }
         });
         txtResetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Screen_resetpassword.class));
+                startActivity(new Intent(getContext(), Screen_resetpassword.class));
             }
         });
         txtChatbot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Screen_chatbot.class));
+                startActivity(new Intent(getContext(), Screen_chatbot.class));
+            }
+        });
+        tv_OrderHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), Screen_orderhistory.class));
             }
         });
 
@@ -99,5 +105,26 @@ public class AccountFragment extends Fragment {
 //                return builder.create();
 //            }
 //        });
+
+
     }
+
+//    private void callApiGetClient(){
+//        ApiService.apiservice.getCilent().enqueue(new Callback<Root>() {
+//            @Override
+//            public void onResponse(Call<Root> call, Response<Root> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//
+//                } else {
+//                    Toast.makeText(getContext(), "Error in response", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Root> call, Throwable t) {
+//                Toast.makeText(getContext(), "lỗi account", Toast.LENGTH_SHORT).show();
+//                Log.d("tttt", t.getMessage());
+//            }
+//        });
+//    }
 }

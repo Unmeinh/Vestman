@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pri_blue"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="10"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +17,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
+
         >
         <TextView
             android:layout_width="wrap_content"
@@ -30,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_weight="8"
         >
 
         <LinearLayout
@@ -42,6 +46,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="User"
@@ -215,7 +220,7 @@
             app:cardCornerRadius="30dp"
             >
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/img_account"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:foreground="@drawable/ic_launcher_background"
@@ -225,4 +230,4 @@
     </RelativeLayout>
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

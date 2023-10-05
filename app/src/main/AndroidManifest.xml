@@ -25,7 +25,7 @@
             android:name=".screen.Screen_userinfo"
             android:exported="false" />
         <activity
-            android:name=".screen.Screen_vest"
+            android:name=".screen.Screen_orderhistory"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
