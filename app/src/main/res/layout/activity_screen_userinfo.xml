@@ -71,6 +71,7 @@
                     android:layout_marginBottom="10dp"
                     />
                 <EditText
+                    android:id="@+id/ed_info_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="name"
@@ -102,6 +103,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_info_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_edittext"
@@ -132,6 +134,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_info_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/custom_edittext"
@@ -163,6 +166,7 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_info_address"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/custom_edittext"
@@ -177,14 +181,14 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_update_info"
                 android:layout_width="270dp"
                 android:layout_height="45dp"
-                android:text="Update"
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:background="@drawable/custom_button"
-                />
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -196,10 +200,9 @@
             app:cardCornerRadius="30dp"
             >
             <ImageView
-                android:id="@+id/img"
+                android:id="@+id/img_user"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:foreground="@drawable/ic_launcher_background"
                 />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
