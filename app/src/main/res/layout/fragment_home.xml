@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment"
     android:orientation="vertical"
-    android:weightSum="10"
-    >
+    android:weightSum="12">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="6"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
         android:background="#2E9DFF"
         >
         <LinearLayout
@@ -46,9 +46,36 @@
 
     </LinearLayout>
     <LinearLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="4"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:weightSum="12"
+        android:background="#19000000"
+        >
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10.8"
+            android:paddingStart="80dp"
+            android:paddingEnd="80dp"
+            />
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/CircleIndicator3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            app:ci_drawable="@drawable/bg_indicator"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.5"
         android:background="#19000000"
         >
         <GridView
@@ -57,7 +84,7 @@
             android:layout_height="match_parent"
             android:id="@+id/rcvProduct"
             android:gravity="center"
-            android:paddingTop="10dp"
+            android:verticalSpacing="10dp"
             />
 
 
