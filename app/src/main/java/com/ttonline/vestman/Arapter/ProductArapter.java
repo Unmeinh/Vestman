@@ -1,4 +1,4 @@
-package com.ttonline.vestman.Adapter;//package com.ttonline.vestman.Arapter;
+package com.ttonline.vestman.Arapter;//package com.ttonline.vestman.Arapter;
 //
 //import android.content.Context;
 //import android.view.LayoutInflater;
@@ -85,11 +85,11 @@ import com.ttonline.vestman.models.ProductModel;
 
 import java.util.List;
 
-public class ProductAdapter extends BaseAdapter {
+public class ProductArapter extends BaseAdapter {
     private List<ProductModel> mListProduct;
     private Context context;
 
-    public ProductAdapter(List<ProductModel> mListProduct, Context context) {
+    public ProductArapter(List<ProductModel> mListProduct, Context context) {
         this.mListProduct = mListProduct;
         this.context = context;
     }
