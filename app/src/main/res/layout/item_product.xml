@@ -8,6 +8,7 @@
     app:cardBackgroundColor="#000000"
     android:padding="10dp"
     android:layout_margin="10dp"
+    android:id="@+id/cardview"
     >
     >
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,6 +29,7 @@
             android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
             >
         </ImageView>
         <TextView
@@ -61,6 +63,7 @@
 
                 />
             <ImageButton
+                android:id="@+id/btn_cart"
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="match_parent"

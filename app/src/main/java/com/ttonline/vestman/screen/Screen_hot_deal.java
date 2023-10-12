@@ -46,7 +46,7 @@ public class Screen_hot_deal extends AppCompatActivity {
         binding.viewPager2.setPageTransformer(compositePageTransformer);
 
         mlistPhoto=getListPhoto();
-        PhotoArapter photoArapter=new PhotoArapter(mlistPhoto);
+        PhotoArapter photoArapter=new PhotoArapter(mlistPhoto,this);
         binding.viewPager2.setAdapter(photoArapter);
         binding.CircleIndicator3.setViewPager(binding.viewPager2);
 

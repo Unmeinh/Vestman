@@ -47,8 +47,8 @@ public class HomeFragment extends Fragment {
         public void run() {
             if (binding != null && binding.viewPager2 != null) {
                 int currenPosition= binding.viewPager2.getCurrentItem();
-                if (currenPosition==mlistPhoto.size()-1){
-                    binding.viewPager2.setCurrentItem(1);
+                if (currenPosition==mlistPhoto.size()-2){
+                    binding.viewPager2.setCurrentItem(2);
 
                 }else {
                     binding.viewPager2.setCurrentItem(currenPosition+1);
@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
         binding.viewPager2.setPageTransformer(compositePageTransformer);
 
         mlistPhoto=getListPhoto();
-        PhotoArapter photoArapter=new PhotoArapter(mlistPhoto);
+        PhotoArapter photoArapter=new PhotoArapter(mlistPhoto,context);
         binding.viewPager2.setAdapter(photoArapter);
         binding.CircleIndicator3.setViewPager(binding.viewPager2);
         binding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -109,6 +109,11 @@ public class HomeFragment extends Fragment {
     }
     private List<Photo> getListPhoto(){
         List<Photo> list=new ArrayList<>();
+        list.add(new Photo(R.drawable.img_silideshow_1));
+        list.add(new Photo(R.drawable.img_silideshow_2));
+        list.add(new Photo(R.drawable.img_silideshow_3));
+        list.add(new Photo(R.drawable.img_silideshow_4));
+        list.add(new Photo(R.drawable.img_silideshow_5));
         list.add(new Photo(R.drawable.img_silideshow_1));
         list.add(new Photo(R.drawable.img_silideshow_2));
         list.add(new Photo(R.drawable.img_silideshow_3));
