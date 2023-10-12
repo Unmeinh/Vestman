@@ -1,8 +1,12 @@
 package com.ttonline.vestman.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import com.ttonline.vestman.models.Datum;
 import com.ttonline.vestman.models.ResMessage;
+import com.ttonline.vestman.models.ClientUpdateModel;
+import com.ttonline.vestman.models.ProductModel;
+
 import com.ttonline.vestman.models.Root;
 import com.ttonline.vestman.models.Root_cart;
 
@@ -10,9 +14,11 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -26,6 +32,7 @@ public interface ApiService {
     @GET("api/product/list")
     Call<Root> getProduct();
 
+
     @GET("api/cart/list/{id_client}")
     Call<Root_cart> getCartItems(@Path("id_client") String id_client);
 
@@ -34,5 +41,8 @@ public interface ApiService {
 
     @DELETE("api/cart/delete/{idCart}")
     Call<ResMessage> deleteToCart(@Path("idCart") String _id);
+      @PUT("api/client/updateClient/{id}")
+    Call<ClientUpdateModel> updateClient(@Path("id") String id, @Body ClientUpdateModel clientUpdateModel);
+
 
 }
