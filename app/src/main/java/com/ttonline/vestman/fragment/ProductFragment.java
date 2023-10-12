@@ -13,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ttonline.vestman.Api.ApiService;
-import com.ttonline.vestman.Adapter.ProductAdapter;
+import com.ttonline.vestman.Arapter.ProductArapter;
+import com.ttonline.vestman.R;
+import com.ttonline.vestman.databinding.FragmentHomeBinding;
 import com.ttonline.vestman.databinding.FragmentProductBinding;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
@@ -64,8 +66,8 @@ public class ProductFragment extends Fragment {
                         mListProduct.addAll(productList);
 
                         // Tạo và cấu hình adapter
-                        ProductAdapter productAdapter = new ProductAdapter(mListProduct, getContext());
-                        binding.rcvProduct.setAdapter(productAdapter);
+                        ProductArapter productArapter = new ProductArapter(mListProduct, getContext());
+                        binding.rcvProduct.setAdapter(productArapter);
                     } else {
                         Toast.makeText(getContext(), "Error in API response: " + root.getMessage(), Toast.LENGTH_SHORT).show();
                     }
