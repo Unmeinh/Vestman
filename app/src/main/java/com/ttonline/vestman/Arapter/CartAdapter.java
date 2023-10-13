@@ -1,6 +1,8 @@
 package com.ttonline.vestman.Arapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +14,17 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.models.Datum;
 import com.ttonline.vestman.models.IdProduct;
 import com.ttonline.vestman.models.ResMessage;
+import com.ttonline.vestman.screen.Screen_cart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,20 +60,44 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             return;
         }
         IdProduct idProduct = datum.getId_product();
-
+        Picasso.get().load(idProduct.getImages().get(0)).into(holder.imageView);
         holder.name.setText(idProduct.getName_product());
         holder.gia.setText("Price: " + String.valueOf(idProduct.getPrice()) + " VNĐ");
         holder.color.setText("Color: " + idProduct.getColor());
-        holder.size.setText("Size: "+"56");
+        holder.size.setText("Size: "+datum.getSize());
+        holder.quantity.setText("Quantity : "+datum.getQuantity());
 
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "xóa dữ liệu", Toast.LENGTH_SHORT).show();
-                //xử lý xóa dữ liệu
-                callApiDeleteCartItem(datum._id);
-                Log.d("TAGzzzzz", "onClick: "+datum.get_id());
-                Log.d("TAGtttt", "onClick: "+list_cart.size());
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Xác nhận xóa");
+                builder.setMessage("Bạn có chắc muốn xóa mục này khỏi giỏ hàng?");
+
+                // Thêm nút "Xác nhận"
+                builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Xóa mục khi người dùng xác nhận
+                        callApiDeleteCartItem(datum._id);
+                        // Cập nhật danh sách giỏ hàng và thông báo
+                        list_cart.remove(datum);
+                        notifyDataSetChanged();
+                    }
+                });
+
+                // Thêm nút "Hủy bỏ"
+                builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Đóng hộp thoại nếu người dùng hủy bỏ
+                        dialog.dismiss();
+                    }
+                });
+
+                // Tạo và hiển thị hộp thoại
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -84,7 +114,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private ImageButton btn_delete;
-        private TextView name,gia,color,size;
+        private TextView name,gia,color,size,quantity;
         private CardView cardView;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +125,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             size=itemView.findViewById(R.id.size);
             cardView=itemView.findViewById(R.id.cardv);
             btn_delete=itemView.findViewById(R.id.btn_delete);
+            quantity=itemView.findViewById(R.id.quntity);
 
         }
     }
@@ -105,7 +136,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 if (response.isSuccessful() && response.body() != null) {
                     // Xóa thành công
                     // Thực hiện các hành động cần thiết sau khi xóa
-                    notifyDataSetChanged();
+                    CartAdapter cartAdapter = new CartAdapter(list_cart, context);
+                    cartAdapter.notifyDataSetChanged();
+
                     Log.d("zzzzzz", "Xóa thành công. Message: " + response.message() + " Code: " + response.code());
                 } else {
                     // Xóa không thành công hoặc có lỗi

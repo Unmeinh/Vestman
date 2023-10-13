@@ -87,18 +87,15 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:id="@+id/quntity"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="13dp"
-                    android:text="số lượng"
+                    android:text="Quantity : 2"
                     android:textColor="@color/black" />
 
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="13dp"
-                    android:layout_weight="1" />
+
             </LinearLayout>
 
             <TextView
@@ -106,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="7.500.000 VNĐ"
+                android:text="Price : 7.500.000 VNĐ"
                 android:textSize="13dp"
                 android:textColor="@color/black" />
         </LinearLayout>

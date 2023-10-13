@@ -62,8 +62,9 @@ public class Screen_cart extends AppCompatActivity {
                     Root_cart rootCart = response.body();
                     if (rootCart.isSuccess()) {
                         ArrayList<Datum> cartData = rootCart.getData();
-                        list_cart.clear();
-                        list_cart.addAll(cartData);
+//                        list_cart.clear();
+//                        list_cart.addAll(cartData);
+                        list_cart=response.body().getData();
                         // Tạo và cấu hình adapter
                         CartAdapter cartAdapter = new CartAdapter(list_cart,Screen_cart.this);
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Screen_cart.this);
@@ -73,7 +74,7 @@ public class Screen_cart extends AppCompatActivity {
                         binding.rcvCart.setAdapter(cartAdapter);
                         // Xóa dữ liệu cũ
                         // Thêm dữ liệu mới
-//                        cartAdapter.notifyDataSetChanged();
+                        cartAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(Screen_cart.this, "Error in API response: " + rootCart.getMessage(), Toast.LENGTH_SHORT).show();
                     }
