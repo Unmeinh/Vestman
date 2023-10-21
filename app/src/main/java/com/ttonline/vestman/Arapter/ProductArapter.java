@@ -32,6 +32,7 @@ import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.models.Root_cart;
 import com.ttonline.vestman.models.YourRequestClass;
 import com.ttonline.vestman.screen.Screen_cart;
+import com.ttonline.vestman.screen.Screen_detailProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,16 @@ public class ProductArapter extends BaseAdapter {
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent =new Intent(context, Screen_detailProduct.class);
+                    intent.putExtra("product", productModel);
+                    context.startActivity(intent);
+                }
+            });
+
+
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     View view = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_detail_product, null);
                     builder.setView(view);
@@ -180,8 +191,10 @@ public class ProductArapter extends BaseAdapter {
                         }
                     });
                     dialog1.show();
+                    return false;
                 }
             });
+
 
             holder.btn_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
