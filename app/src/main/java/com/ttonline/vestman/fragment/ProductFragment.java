@@ -1,5 +1,7 @@
 package com.ttonline.vestman.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ttonline.vestman.Api.ApiService;
-import com.ttonline.vestman.Adapter.ProductAdapter;
+import com.ttonline.vestman.Arapter.ProductArapter;
+import com.ttonline.vestman.R;
+import com.ttonline.vestman.databinding.FragmentHomeBinding;
 import com.ttonline.vestman.databinding.FragmentProductBinding;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.screen.Screen_cart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +38,14 @@ public class ProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentProductBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        Context context=getContext();
+        binding.btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, Screen_cart.class);
+                startActivity(intent);
+            }
+        });
 
         callApiGetProduct();
         return root;
@@ -53,8 +66,8 @@ public class ProductFragment extends Fragment {
                         mListProduct.addAll(productList);
 
                         // Tạo và cấu hình adapter
-                        ProductAdapter productAdapter = new ProductAdapter(mListProduct, getContext());
-                        binding.rcvProduct.setAdapter(productAdapter);
+                        ProductArapter productArapter = new ProductArapter(mListProduct, getContext());
+                        binding.rcvProduct.setAdapter(productArapter);
                     } else {
                         Toast.makeText(getContext(), "Error in API response: " + root.getMessage(), Toast.LENGTH_SHORT).show();
                     }
