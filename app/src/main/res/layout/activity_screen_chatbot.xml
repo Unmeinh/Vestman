@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/pri_blue"
-    tools:context=".screen.Screen_chatbot">
+    tools:context=".screen.Screen_chatbot"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,45 +36,107 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
-        android:paddingTop="70dp"
         >
 
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chatbot"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:layout_above="@+id/layout_msg"
+            tools:listitem="@layout/item_msg_user"
+            />
+
+        <HorizontalScrollView
+            android:id="@+id/layout_msg"
             android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/gray"
-            android:padding="5dp"
+
+
             >
-            <EditText
-                android:id="@+id/ed_chatbot_chat"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toLeftOf="@+id/btn_chatbot_chat"
-                android:layout_marginRight="15dp"
-                />
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="30dp"
+                >
+
+                <Button
+                    android:id="@+id/btn_quest_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Bộ vest này còn hàng không shop?"
+                    android:background="@drawable/custom_button"
+                    android:padding="8dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <Button
+                    android:id="@+id/btn_quest_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Tôi muốn biết mình vừa với size bao nhiêu thì phải làm sao?"
+                    android:background="@drawable/custom_button"
+                    android:padding="8dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <Button
+                    android:id="@+id/btn_quest_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Bộ vest này có màu nào khác không shop?"
+                    android:background="@drawable/custom_button"
+                    android:padding="8dp"
+                    android:layout_marginRight="20dp"
+                    />
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
-            <ImageButton
-                android:id="@+id/btn_chatbot_chat"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/custom_chatbot_button"
-                android:layout_gravity="center"
-                android:src="@drawable/uil_message"
-                />
-        </RelativeLayout>
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/layout_msg"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:background="@color/gray"-->
+<!--            android:padding="5dp"-->
+<!--            >-->
+<!--            <EditText-->
+<!--                android:id="@+id/ed_chatbot_chat"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_toLeftOf="@+id/fab_chatbot_chat"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:singleLine="true"-->
+<!--                android:hint="Enter Message"-->
+<!--                />-->
+
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/fab_chatbot_chat"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:src="@drawable/uil_message"-->
+<!--                app:fabCustomSize="50dp"-->
+<!--                android:backgroundTint="@color/pri_blue"-->
+<!--                android:tint="@color/white"-->
+<!--                />-->
+
+<!--        </RelativeLayout>-->
 
     </RelativeLayout>
 

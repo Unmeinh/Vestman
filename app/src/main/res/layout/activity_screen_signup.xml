@@ -31,6 +31,7 @@
         android:gravity="center"
         >
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_til_username"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,8 +40,10 @@
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_account_circle_24"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_ed_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -48,16 +51,19 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_til_email"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fullname"
+            android:hint="Email"
             android:textColorHint="@color/black"
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_mail_24"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_ed_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -65,7 +71,30 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_til_phone"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="#2E9DFF"
+            app:errorEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_phone_enabled_24"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_ed_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:inputType="number"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_til_password"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,8 +103,11 @@
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_lock_24"
+            app:passwordToggleEnabled="true"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_ed_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -84,6 +116,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/signup_til_repassword"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,8 +125,11 @@
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_lock_24"
+            app:passwordToggleEnabled="true"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/signup_ed_repassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -103,7 +139,7 @@
         </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:layout_weight="1"
-            android:id="@+id/button_id"
+            android:id="@+id/signup_btn_signup"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:backgroundTint="#2E9DFF"
