@@ -36,6 +36,7 @@
         android:gravity="center"
         >
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_til_username"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,8 +45,10 @@
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_account_circle_24"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_ed_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -53,6 +56,7 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_til_password"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,17 +65,27 @@
             app:boxStrokeColor="#2E9DFF"
             app:errorEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/baseline_lock_24"
+            app:passwordToggleEnabled="true"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_ed_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-
+                android:inputType="textPassword"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/ckb_rememberme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            android:text="Remember me"/>
         <Button
             android:layout_weight="1"
-            android:id="@+id/button_id"
+            android:id="@+id/login_btn_login"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:backgroundTint="#2E9DFF"
@@ -95,9 +109,10 @@
             android:gravity="center"
             />
         <Button
+            android:id="@+id/login_btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="register"
+            android:text="Register"
             android:backgroundTint="#2E9DFF"
             android:layout_gravity="center"
             ></Button>
