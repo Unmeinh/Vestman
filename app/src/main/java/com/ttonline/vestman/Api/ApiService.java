@@ -35,7 +35,7 @@ public interface ApiService {
 
     ApiService apiservice= new Retrofit.Builder()
 
-            .baseUrl("http://192.168.45.108:3000/")
+            .baseUrl("http://:3000/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
@@ -74,8 +74,7 @@ public interface ApiService {
 
     @DELETE("api/cart/delete/{idCart}")
     Call<ResMessage> deleteToCart(@Path("idCart") String _id);
-      @PUT("api/client/updateClient/{id}")
-    Call<ClientUpdateModel> updateClient(@Path("id") String id, @Body ClientUpdateModel clientUpdateModel);
+
 
 
 }
