@@ -67,10 +67,6 @@ public interface ApiService {
     Call<SignupResponse> Signup(@Body SignupRequest signupRequest);
 
 
-
-    @GET
-
-
     @GET("api/cart/list/{id_client}")
     Call<Root_cart> getCartItems(@Path("id_client") String id_client);
 
