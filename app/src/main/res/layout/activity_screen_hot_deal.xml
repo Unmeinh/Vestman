@@ -40,37 +40,56 @@
             android:textColor="@color/white"
             />
     </LinearLayout>
+
     <LinearLayout
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4.5"
+        android:layout_weight="3.5"
         android:orientation="vertical"
         android:gravity="center"
-        android:weightSum="12"
+
         >
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager_2"
+        <ImageView
+            android:id="@+id/img_slideshow"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10.8"
-            android:paddingStart="80dp"
-            android:paddingEnd="80dp"
-            />
-        <me.relex.circleindicator.CircleIndicator3
-            android:id="@+id/CircleIndicator3"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1.2"
-            app:ci_drawable="@drawable/bg_indicator"
+            android:layout_weight="1"
+            android:scaleX="2"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="2"
+        android:padding="20dp"
         >
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="BLACK FRIDAY - SALE UP TO 50%Chỉ còn 3 ngày duy nhất Cơn sốt săn sale Black Friday, ưu đãi lên đến 50% chưa có dấu hiệu hạ nhiệt. Rất nhiều khách hàng đã lựa chọn được những món đồ của mình. Bạn còn chờ gì mà không qua ngay thôi!"
+            android:textColor="@color/black"
 
+            >
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5"
+        >
+        <GridView
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grid_prod"
+            android:gravity="center"
+            android:verticalSpacing="10dp"
+            >
+
+        </GridView>
     </LinearLayout>
 
 
