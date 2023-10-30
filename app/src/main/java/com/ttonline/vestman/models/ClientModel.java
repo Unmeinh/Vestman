@@ -3,9 +3,9 @@ package com.ttonline.vestman.models;
 import java.util.Date;
 
 public class ClientModel {
-    public String _id,username,password,full_name,email,address,avatar;
-    public Number phone_number;
-    public Date create_at;
+    private String _id,username,password,full_name,email,address,avatar;
+    private Number phone_number;
+    private Date create_at;
 
     public ClientModel(String username, String password, String full_name, String email, String address, String avatar, Number phone_number, Date create_at) {
         this.username = username;
@@ -18,20 +18,20 @@ public class ClientModel {
         this.create_at = create_at;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String get_id() {
         return _id;
     }
 
     public void set_id(String _id) {
         this._id = _id;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getUsername() {
