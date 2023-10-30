@@ -15,6 +15,7 @@ import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.models.ClientUpdateModel;
 
 import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.models.RootSlideShow;
 import com.ttonline.vestman.models.Root_cart;
 import com.ttonline.vestman.models.YourRequestClass;
 
@@ -43,6 +44,10 @@ public interface ApiService {
     @GET("api/product/list")
     Call<Root> getProduct();
 
+
+    @GET("api/blog/list")
+    Call<RootSlideShow> getSideShow();
+
     @GET("api/bill/list/{id}")
     Call<RootBill> getBills(@Path("id") String id);
 
@@ -64,7 +69,7 @@ public interface ApiService {
 
 
     @GET
-    Call<MsgModel> getMessage(@Url String url);
+
 
     @GET("api/cart/list/{id_client}")
     Call<Root_cart> getCartItems(@Path("id_client") String id_client);
