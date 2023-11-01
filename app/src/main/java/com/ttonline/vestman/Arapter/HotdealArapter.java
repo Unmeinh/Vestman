@@ -86,7 +86,7 @@ public class HotdealArapter extends BaseAdapter {
             int gia= Integer.parseInt(String.valueOf(productModel.getPrice()));
             holder.tv_name.setText(productModel.getName_product());
             holder.tv_gia_cu.setText(String.valueOf(productModel.getPrice()));
-            holder.tv_gia.setText(String.valueOf(gia-100000));
+            holder.tv_gia.setText(String.valueOf(gia-productModel.getId_discount().getValue()));
             Picasso.get().load(productModel.getImages().get(0)).into(holder.img_product);
 
 

@@ -2,6 +2,7 @@ package com.ttonline.vestman.Arapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class PhotoArapter extends RecyclerView.Adapter<PhotoArapter.PhotoViewHol
             public void onClick(View v) {
                 Intent intent= new Intent(context, Screen_hot_deal.class);
                 intent.putExtra("modelSlideShow", modelSlideShow);
+                Log.d("modelSlideShow", String.valueOf(modelSlideShow));
                 context.startActivity(intent);
             }
         });

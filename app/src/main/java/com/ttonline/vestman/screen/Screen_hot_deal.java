@@ -58,12 +58,14 @@ public class Screen_hot_deal extends AppCompatActivity {
             if (modelSlideShow != null) {
                 // Bạn có thể sử dụng modelSlideShow để hiển thị dữ liệu trên màn hình Screen_hot_deal
                 String thumbnailImage = modelSlideShow.getThumbnailImage();
+                mListProduct.add(modelSlideShow.getProductModel()) ;
                 String description = modelSlideShow.getDescription();
                 List<ModelSlideShow> mlistpro=new ArrayList<>();
 
                 Picasso.get().load(modelSlideShow.getThumbnailImage()).into(binding.imgSlideshow);
                 binding.tvDescription.setText(description);
-
+                HotdealArapter hotdealArapter = new HotdealArapter(mListProduct, Screen_hot_deal.this);
+                binding.gridProd.setAdapter(hotdealArapter);
                 // ...
             }
         }
@@ -80,12 +82,9 @@ public class Screen_hot_deal extends AppCompatActivity {
                     if (root.isSuccess()) {
                         ArrayList<ProductModel> productList = root.getData();
                         mListProduct.addAll(productList);
-                        List<ProductModel> list1= mListProduct;
-                        List<ProductModel> list2= mListProduct;
-                        List<ProductModel> combinedList = new ArrayList<>(list1);
-                        combinedList.addAll(list2);
+
                         // Tạo và cấu hình adapter
-                        HotdealArapter hotdealArapter = new HotdealArapter(combinedList, Screen_hot_deal.this);
+                        HotdealArapter hotdealArapter = new HotdealArapter(mListProduct, Screen_hot_deal.this);
                         binding.gridProd.setAdapter(hotdealArapter);
                     } else {
                         Toast.makeText(Screen_hot_deal.this, "Error in API response: " + root.getMessage(), Toast.LENGTH_SHORT).show();

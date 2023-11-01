@@ -23,17 +23,14 @@ public class ProductModel implements Parcelable {
     public Date created_at;
     public int __v;
 
-//    public ProductModel(String name_product, int price) {
-//        this.name_product = name_product;
-//        this.price = price;
-//    }
 
     protected ProductModel(Parcel in) {
         _id = in.readString();
-        sizes = in.createStringArrayList(); // Đọc dữ liệu trực tiếp dưới dạng ArrayList<String>
+        sizes = in.createStringArrayList();
         images = in.createStringArrayList();
         name_product = in.readString();
         detail_product = in.readString();
+        id_discount = in.readParcelable(IdDiscount.class.getClassLoader());
         color = in.readString();
         quantity = in.readInt();
         quantitySold = in.readInt();
@@ -52,27 +49,6 @@ public class ProductModel implements Parcelable {
             return new ProductModel[size];
         }
     };
-
-    // Các getter và setter khác
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_id);
-        dest.writeStringList(sizes); // Ghi dữ liệu trực tiếp dưới dạng ArrayList<String>
-        dest.writeStringList(images);
-        dest.writeString(name_product);
-        dest.writeString(detail_product);
-        dest.writeString(color);
-        dest.writeInt(quantity);
-        dest.writeInt(quantitySold);
-        dest.writeInt(price);
-        dest.writeInt(__v);
-    }
 
     public String get_id() {
         return _id;
@@ -168,5 +144,25 @@ public class ProductModel implements Parcelable {
 
     public void set__v(int __v) {
         this.__v = __v;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeStringList(sizes);
+        dest.writeStringList(images);
+        dest.writeString(name_product);
+        dest.writeString(detail_product);
+        dest.writeParcelable(id_discount, flags);
+        dest.writeString(color);
+        dest.writeInt(quantity);
+        dest.writeInt(quantitySold);
+        dest.writeInt(price);
+        dest.writeInt(__v);
     }
 }
