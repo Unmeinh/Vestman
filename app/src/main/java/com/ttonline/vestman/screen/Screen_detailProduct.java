@@ -46,6 +46,7 @@ public class Screen_detailProduct extends AppCompatActivity {
             Log.d("size product : ", String.valueOf(listsize));
             Log.d("name product : ", productModel.getName_product());
             Log.d("price product : ", String.valueOf(productModel.getPrice()));
+            Log.d("discount : ", String.valueOf(productModel.getId_discount()));
 
             List<Integer> numbers = new ArrayList<>();
             for (int i = 1; i <= 10; i++) {

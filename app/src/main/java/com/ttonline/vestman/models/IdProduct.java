@@ -1,21 +1,53 @@
 package com.ttonline.vestman.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class IdProduct{
+public class IdProduct implements Parcelable {
     public String _id;
     public ArrayList<Integer> sizes;
     public ArrayList<String> images;
     public String name_product;
     public String detail_product;
     public String id_discount;
+
     public String color;
+
     public int quantity;
     public int quantitySold;
     public int price;
     public Date created_at;
     public int __v;
+
+    protected IdProduct(Parcel in) {
+        _id = in.readString();
+        images = in.createStringArrayList();
+        name_product = in.readString();
+        detail_product = in.readString();
+        id_discount = in.readString();
+        color = in.readString();
+        quantity = in.readInt();
+        quantitySold = in.readInt();
+        price = in.readInt();
+        __v = in.readInt();
+    }
+
+    public static final Creator<IdProduct> CREATOR = new Creator<IdProduct>() {
+        @Override
+        public IdProduct createFromParcel(Parcel in) {
+            return new IdProduct(in);
+        }
+
+        @Override
+        public IdProduct[] newArray(int size) {
+            return new IdProduct[size];
+        }
+    };
 
     public String get_id() {
         return _id;
@@ -111,5 +143,24 @@ public class IdProduct{
 
     public void set__v(int __v) {
         this.__v = __v;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeStringList(images);
+        dest.writeString(name_product);
+        dest.writeString(detail_product);
+        dest.writeString(id_discount);
+        dest.writeString(color);
+        dest.writeInt(quantity);
+        dest.writeInt(quantitySold);
+        dest.writeInt(price);
+        dest.writeInt(__v);
     }
 }

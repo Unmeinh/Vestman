@@ -41,7 +41,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    private List<ProductModel> mListProduct=new ArrayList<>();
+        private List<ProductModel> mListProduct=new ArrayList<>();
     private List<ModelSlideShow> mListSlideShows=new ArrayList<>();
     private List<ModelSlideShow>mlistPhoto;
 
@@ -138,12 +138,7 @@ private void callApiGetProduct() {
                     RootSlideShow rootSlideShow = response.body();
                     if (rootSlideShow.isSuccess()) {
                         ArrayList<ModelSlideShow> slideShows = rootSlideShow.getData();
-                        ArrayList<ModelSlideShow> slideShowsv2 = rootSlideShow.getData();
-                        List<ModelSlideShow> combinedList = new ArrayList<>(slideShows);
-                        combinedList.addAll(slideShowsv2);
-
-                                 mlistPhoto=combinedList;
-
+                                 mlistPhoto=slideShows;
                                  PhotoArapter photoArapter=new PhotoArapter(mlistPhoto,getContext());
                                  binding.viewPager2.setAdapter(photoArapter);
                                  binding.CircleIndicator3.setViewPager(binding.viewPager2);

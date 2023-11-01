@@ -11,7 +11,7 @@ public class ModelSlideShow implements Parcelable {
     public String _id;
     public String thumbnailImage;
     public String description;
-//    public IdProduct id_product;
+    public ProductModel id_product;
     public Date expires_at;
     public Date created_at;
     public int __v;
@@ -21,7 +21,22 @@ public class ModelSlideShow implements Parcelable {
         _id = in.readString();
         thumbnailImage = in.readString();
         description = in.readString();
+        id_product = in.readParcelable(ProductModel.class.getClassLoader());
         __v = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeString(thumbnailImage);
+        dest.writeString(description);
+        dest.writeParcelable(id_product, flags);
+        dest.writeInt(__v);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ModelSlideShow> CREATOR = new Creator<ModelSlideShow>() {
@@ -60,13 +75,13 @@ public class ModelSlideShow implements Parcelable {
         this.description = description;
     }
 
-//    public IdProduct getId_product() {
-//        return id_product;
-//    }
-//
-//    public void setId_product(IdProduct id_product) {
-//        this.id_product = id_product;
-//    }
+    public ProductModel getProductModel() {
+        return id_product;
+    }
+
+    public void setProductModel(ProductModel productModel) {
+        this.id_product = productModel;
+    }
 
     public Date getExpires_at() {
         return expires_at;
@@ -92,16 +107,6 @@ public class ModelSlideShow implements Parcelable {
         this.__v = __v;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(_id);
-        dest.writeString(thumbnailImage);
-        dest.writeString(description);
-        dest.writeInt(__v);
-    }
+
 }
