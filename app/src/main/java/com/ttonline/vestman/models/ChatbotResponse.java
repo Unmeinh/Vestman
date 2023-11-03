@@ -1,10 +1,8 @@
 package com.ttonline.vestman.models;
 
-import java.util.ArrayList;
-
-public class SignupResponse {
+public class ChatbotResponse {
     private boolean success;
-    private ClientModel data;
+    private ChatbotModel data;
     private String message;
 
     public boolean isSuccess() {
@@ -15,11 +13,11 @@ public class SignupResponse {
         this.success = success;
     }
 
-    public ClientModel getData() {
+    public ChatbotModel getData() {
         return data;
     }
 
-    public void setData(ClientModel data) {
+    public void setData(ChatbotModel data) {
         this.data = data;
     }
 

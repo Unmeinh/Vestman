@@ -2,18 +2,21 @@ package com.ttonline.vestman.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BillModel {
-    public String _id,id_client;
-    public ArrayList<BillItemModel> arr_product;
-    public Number total;
-    public Date create_at;
+    private String _id,id_client;
+    private ArrayList<BillItemModel> arr_product;
+    private int total;
+    private String created_at;
+    private int status;
 
-    public BillModel(String id_client, ArrayList<BillItemModel> arr_product, Number total, Date create_at) {
+    public BillModel(String id_client, ArrayList<BillItemModel> arr_product, int total, String created_at, int status) {
         this.id_client = id_client;
         this.arr_product = arr_product;
         this.total = total;
-        this.create_at = create_at;
+        this.created_at = created_at;
+        this.status = status;
     }
 
     public String getId_client() {
@@ -40,19 +43,27 @@ public class BillModel {
         this.arr_product = arr_product;
     }
 
-    public Number getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(Number total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

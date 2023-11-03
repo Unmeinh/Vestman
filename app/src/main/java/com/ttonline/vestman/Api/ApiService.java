@@ -1,7 +1,7 @@
 package com.ttonline.vestman.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.ttonline.vestman.models.ClientModel;
+import com.ttonline.vestman.models.ChatbotResponse;
 import com.ttonline.vestman.models.ClientUpdateModel;
 import com.ttonline.vestman.models.LoginRequest;
 import com.ttonline.vestman.models.LoginResponse;
@@ -12,12 +12,11 @@ import com.ttonline.vestman.models.RootBill;
 import com.ttonline.vestman.models.SignupRequest;
 import com.ttonline.vestman.models.SignupResponse;
 import com.ttonline.vestman.models.ResMessage;
-import com.ttonline.vestman.models.ClientUpdateModel;
 
-import com.ttonline.vestman.models.Root;
 import com.ttonline.vestman.models.Root_cart;
 import com.ttonline.vestman.models.YourRequestClass;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -35,7 +34,7 @@ public interface ApiService {
 
     ApiService apiservice= new Retrofit.Builder()
 
-            .baseUrl("http://:3000/")
+            .baseUrl("http://192.168.1.31:3000/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
@@ -48,6 +47,8 @@ public interface ApiService {
 
     @PUT("api/client/updateClient/{id}")
     Call<ClientUpdateModel> updateClient(@Path("id") String id, @Body ClientUpdateModel clientUpdateModel);
+    @PUT("api/client/updateAvatar/{id}")
+    Call<LoginResponse> updateAvt(@Path("id") String id, @Body MultipartBody.Part imageUrl);
 
     @PUT("api/client/updatePassword/{id}")
     Call<SignupResponse> updatePassword(@Path("id") String id, @Body ResetPassRequest resetPassRequest);
@@ -61,6 +62,11 @@ public interface ApiService {
     @POST("api/client/register")
     Call<SignupResponse> Signup(@Body SignupRequest signupRequest);
 
+    @GET("api/chatbot/product/{id}")
+    Call<ChatbotResponse> getChatbot(@Path("id") String id);
+
+    @GET("api/bill/list/{id}")
+    Call<RootBill> getBill(@Path("id") String id);
 
 
     @GET

@@ -86,31 +86,7 @@ public class AccountFragment extends Fragment {
         img_user = view.findViewById(R.id.img_account);
         tv_username = view.findViewById(R.id.tv_username);
 
-        ApiService.apiservice.getUserDetail(userId).enqueue(new Callback<SignupResponse>() {
-            @Override
-            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
-                if(response.isSuccessful()){
-                    SignupResponse signupResponse = response.body();
-                    if (signupResponse.isSuccess()){
-                        ClientModel client = signupResponse.getData();
-                        tv_username.setText(client.getFull_name());
-
-                        //ảnh
-                        Glide.with(getContext()).load(client.getAvatar()).into(img_user);
-
-                    }else{
-                        Log.d("zzzz", "userinfo: "+signupResponse.getMessage());
-                    }
-                }else{
-                    Toast.makeText(getContext(), "Error in response", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<SignupResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "onFailure", Toast.LENGTH_SHORT).show();
-                Log.d("tttt", t.getMessage());
-            }
-        });
+        callApiGetUser();
 
         txtUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +150,34 @@ public class AccountFragment extends Fragment {
                     }
                 });
                 return builder.create();
+            }
+        });
+    }
+
+    private void callApiGetUser() {
+        ApiService.apiservice.getUserDetail(userId).enqueue(new Callback<SignupResponse>() {
+            @Override
+            public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
+                if(response.isSuccessful()){
+                    SignupResponse signupResponse = response.body();
+                    if (signupResponse.isSuccess()){
+                        ClientModel client = signupResponse.getData();
+                        tv_username.setText(client.getFull_name());
+
+                        //ảnh
+                        Glide.with(getContext()).load(client.getAvatar()).into(img_user);
+
+                    }else{
+                        Log.d("zzzz", "userinfo: "+signupResponse.getMessage());
+                    }
+                }else{
+                    Toast.makeText(getContext(), "Error in response", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<SignupResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "onFailure", Toast.LENGTH_SHORT).show();
+                Log.d("tttt", t.getMessage());
             }
         });
     }
