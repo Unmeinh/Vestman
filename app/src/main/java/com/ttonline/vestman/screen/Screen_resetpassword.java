@@ -64,7 +64,7 @@ public class Screen_resetpassword extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Screen_resetpassword.this, Screen_navigation.class));
+                onBackPressed();
 
             }
         });

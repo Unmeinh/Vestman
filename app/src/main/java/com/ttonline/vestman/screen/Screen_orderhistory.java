@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttonline.vestman.Adapter.BillAdapter;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
@@ -15,6 +20,8 @@ import com.ttonline.vestman.models.BillItemModel;
 import com.ttonline.vestman.models.BillModel;
 import com.ttonline.vestman.models.RootBill;
 
+import java.io.DataInput;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,81 +35,74 @@ public class Screen_orderhistory extends AppCompatActivity {
     private BillAdapter billAdapter;
     private List<BillModel> mListBill = new ArrayList<>();
     private ArrayList<BillItemModel> mListBillItem = new ArrayList<>();
+    private String idUser = "";
+    private ImageButton btn_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        CallApiGetBillHL();
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("userId")) {
+            idUser = intent.getStringExtra("userId");
+        }
 
         setContentView(R.layout.activity_sreen_orderhistory);
-
-        mListBillItem.add(new BillItemModel("1","XL","10"));
-        mListBillItem.add(new BillItemModel("2","XL","10"));
-        mListBillItem.add(new BillItemModel("3","XL","10"));
-
         recyclerView = findViewById(R.id.rcv_order);
+        btn_back = findViewById(R.id.btn_orderhistory_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        mListBill.add(new BillModel("1",mListBillItem,3,null));
-        mListBill.add(new BillModel("2",mListBillItem,3,null));
-        mListBill.add(new BillModel("3",mListBillItem,3,null));
-
-        billAdapter = new BillAdapter(mListBill);
-        recyclerView.setAdapter(billAdapter);
+        CallApiGetBillHL();
 
     }
 
     public void CallApiGetBillHL(){
         Toast.makeText(Screen_orderhistory.this, "load bill", Toast.LENGTH_SHORT).show();
 
-//        Call<List<BillModel>> call = ApiService.apiservice.getBillsHL();
-//        call.enqueue(new Callback<List<BillModel>>() {
-//            @Override
-//            public void onResponse(Call<List<BillModel>> call, Response<List<BillModel>> response) {
-//                if(response.isSuccessful()){
-//                    mListBill = response.body();
-//                    Log.d("zzzzz", "onResponse: "+response.body());
-//
-//                    billAdapter = new BillAdapter(mListBill);
-//                    recyclerView.setAdapter(billAdapter);
-//                    Toast.makeText(Screen_orderhistory.this, "bill loaded", Toast.LENGTH_SHORT).show();
-//
-//                }else{
-//                    Toast.makeText(Screen_orderhistory.this, "error bill", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<BillModel>> call, Throwable t) {
-//                Toast.makeText(Screen_orderhistory.this, "error bill 2", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+        ApiService.apiservice.getBill(idUser).enqueue(new Callback<RootBill>() {
+            @Override
+            public void onResponse(Call<RootBill> call, Response<RootBill> response) {
+                if (response.isSuccessful() && response.body() != null){
+                    Log.d("zzz-z", response.message());
+                    RootBill rootBill = response.body();
+                    if (rootBill.isSuccess()){
+                        Log.d("zzz-z", rootBill.getMessage());
+                        mListBill = rootBill.getData();
 
-//        ApiService.apiservice.getBillsHL().enqueue(new Callback<RootBill>() {
-//            @Override
-//            public void onResponse(Call<RootBill> call, Response<RootBill> response) {
-//                if(response.isSuccessful() && response.body() != null){
-//                    RootBill rootBill = response.body();
-//                    if (rootBill.isSuccess()){
-//                        mListBill = rootBill.getData();
-//                        billAdapter = new BillAdapter(mListBill);
-//                        recyclerView.setAdapter(billAdapter);
+                        billAdapter = new BillAdapter(Screen_orderhistory.this,mListBill);
+                        recyclerView.setAdapter(billAdapter);
+
+//                        try{
+//                            ObjectMapper om = new ObjectMapper();
+//                            RootBillHistory rootBillHistory = om.readValue((DataInput) rootBill.getData(),RootBillHistory.class);
+//                        Log.d("zzz-z", rootBillHistory.data.toString());
 //
-//                    }else {
-//                        Toast.makeText(Screen_orderhistory.this, "Error in API response: " + rootBill.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(Screen_orderhistory.this, "Error in response", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RootBill> call, Throwable t) {
-//                Toast.makeText(Screen_orderhistory.this, "onFailure", Toast.LENGTH_SHORT).show();
-//                Log.d("tttt", t.getMessage());
-//            }
-//        });
+//                        } catch (IOException e) {
+//                            throw new RuntimeException(e);
+//                        }
+
+
+                    }
+
+                } else {
+                    Log.d("zzz--z", response.message());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RootBill> call, Throwable t) {
+                Toast.makeText(Screen_orderhistory.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("zzz---z", t.getMessage());
+            }
+        });
 
 
 
