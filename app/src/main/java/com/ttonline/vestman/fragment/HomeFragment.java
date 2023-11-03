@@ -20,14 +20,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.Arapter.PhotoArapter;
 import com.ttonline.vestman.Arapter.ProductArapter;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.databinding.FragmentHomeBinding;
+import com.ttonline.vestman.models.ModelSlideShow;
 import com.ttonline.vestman.models.Photo;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.models.RootSlideShow;
 import com.ttonline.vestman.screen.Screen_cart;
 
 import java.util.ArrayList;
@@ -38,8 +41,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    private List<ProductModel> mListProduct=new ArrayList<>();
-    private List<Photo>mlistPhoto;
+        private List<ProductModel> mListProduct=new ArrayList<>();
+    private List<ModelSlideShow> mListSlideShows=new ArrayList<>();
+    private List<ModelSlideShow>mlistPhoto;
+
 
     private Handler handler= new Handler(Looper.getMainLooper());
     private Runnable runnable =new Runnable() {
@@ -47,8 +52,8 @@ public class HomeFragment extends Fragment {
         public void run() {
             if (binding != null && binding.viewPager2 != null) {
                 int currenPosition= binding.viewPager2.getCurrentItem();
-                if (currenPosition==mlistPhoto.size()-2){
-                    binding.viewPager2.setCurrentItem(2);
+                if (currenPosition==mlistPhoto.size()-1){
+                    binding.viewPager2.setCurrentItem(0);
 
                 }else {
                     binding.viewPager2.setCurrentItem(currenPosition+1);
@@ -86,20 +91,8 @@ public class HomeFragment extends Fragment {
         });
 
         binding.viewPager2.setPageTransformer(compositePageTransformer);
-
-        mlistPhoto=getListPhoto();
-        PhotoArapter photoArapter=new PhotoArapter(mlistPhoto,context);
-        binding.viewPager2.setAdapter(photoArapter);
-        binding.CircleIndicator3.setViewPager(binding.viewPager2);
-        binding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable,2500);
-            }
-        });
         callApiGetProduct();
+        callApiSlideShow();
         return root;
     }
     @Override
@@ -107,20 +100,7 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-    private List<Photo> getListPhoto(){
-        List<Photo> list=new ArrayList<>();
-        list.add(new Photo(R.drawable.img_silideshow_1));
-        list.add(new Photo(R.drawable.img_silideshow_2));
-        list.add(new Photo(R.drawable.img_silideshow_3));
-        list.add(new Photo(R.drawable.img_silideshow_4));
-        list.add(new Photo(R.drawable.img_silideshow_5));
-        list.add(new Photo(R.drawable.img_silideshow_1));
-        list.add(new Photo(R.drawable.img_silideshow_2));
-        list.add(new Photo(R.drawable.img_silideshow_3));
-        list.add(new Photo(R.drawable.img_silideshow_4));
-        list.add(new Photo(R.drawable.img_silideshow_5));
-        return list;
-    }
+
 private void callApiGetProduct() {
     ApiService.apiservice.getProduct().enqueue(new Callback<Root>() {
         @Override
@@ -149,5 +129,42 @@ private void callApiGetProduct() {
         }
     });
 }
+
+    private void callApiSlideShow() {
+        ApiService.apiservice.getSideShow().enqueue(new Callback<RootSlideShow>() {
+            @Override
+            public void onResponse(Call<RootSlideShow> call, Response<RootSlideShow> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    RootSlideShow rootSlideShow = response.body();
+                    if (rootSlideShow.isSuccess()) {
+                        ArrayList<ModelSlideShow> slideShows = rootSlideShow.getData();
+                                 mlistPhoto=slideShows;
+                                 PhotoArapter photoArapter=new PhotoArapter(mlistPhoto,getContext());
+                                 binding.viewPager2.setAdapter(photoArapter);
+                                 binding.CircleIndicator3.setViewPager(binding.viewPager2);
+                                    binding.viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                handler.removeCallbacks(runnable);
+                handler.postDelayed(runnable,2500);
+            }
+        });
+
+                    } else {
+                        Toast.makeText(getContext(), "Error in API response: " + rootSlideShow.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Error in response", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RootSlideShow> call, Throwable t) {
+                Toast.makeText(getContext(),  "Slide show onFailure", Toast.LENGTH_SHORT).show();
+                Log.d("tttt", t.getMessage());
+            }
+        });
+    }
 
 }

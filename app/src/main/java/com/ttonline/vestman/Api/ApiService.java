@@ -13,6 +13,9 @@ import com.ttonline.vestman.models.SignupRequest;
 import com.ttonline.vestman.models.SignupResponse;
 import com.ttonline.vestman.models.ResMessage;
 
+
+import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.models.RootSlideShow;
 import com.ttonline.vestman.models.Root_cart;
 import com.ttonline.vestman.models.YourRequestClass;
 
@@ -34,13 +37,17 @@ public interface ApiService {
 
     ApiService apiservice= new Retrofit.Builder()
 
-            .baseUrl("http://192.168.1.31:3000/")
+            .baseUrl("http://192.168.45.108:3000/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
             .create(ApiService.class);
     @GET("api/product/list")
     Call<Root> getProduct();
+
+
+    @GET("api/blog/list")
+    Call<RootSlideShow> getSideShow();
 
     @GET("api/bill/list/{id}")
     Call<RootBill> getBills(@Path("id") String id);
@@ -67,10 +74,6 @@ public interface ApiService {
 
     @GET("api/bill/list/{id}")
     Call<RootBill> getBill(@Path("id") String id);
-
-
-    @GET
-    Call<MsgModel> getMessage(@Url String url);
 
     @GET("api/cart/list/{id_client}")
     Call<Root_cart> getCartItems(@Path("id_client") String id_client);

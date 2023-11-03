@@ -13,12 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ttonline.vestman.Api.ApiService;
+import com.ttonline.vestman.Arapter.PhotoArapter;
 import com.ttonline.vestman.Arapter.ProductArapter;
-import com.ttonline.vestman.R;
-import com.ttonline.vestman.databinding.FragmentHomeBinding;
 import com.ttonline.vestman.databinding.FragmentProductBinding;
+import com.ttonline.vestman.models.ModelSlideShow;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
+import com.ttonline.vestman.models.RootSlideShow;
 import com.ttonline.vestman.screen.Screen_cart;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 
 public class ProductFragment extends Fragment {
     private List<ProductModel> mListProduct=new ArrayList<>();
+
     private FragmentProductBinding binding;
 
 
@@ -48,6 +50,8 @@ public class ProductFragment extends Fragment {
         });
 
         callApiGetProduct();
+
+
         return root;
     }
     @Override
@@ -83,4 +87,5 @@ public class ProductFragment extends Fragment {
             }
         });
     }
+
 }
