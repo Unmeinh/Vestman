@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "163759512437",
+    "project_id": "vestman-firebase-ada53",
+    "storage_bucket": "vestman-firebase-ada53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163759512437:android:9033ac11c964d4b8b0d13c",
+        "android_client_info": {
+          "package_name": "com.ttonline.vestman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgrqWOk9vzsb68Bcg_ik8y-C7kJkYxXUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

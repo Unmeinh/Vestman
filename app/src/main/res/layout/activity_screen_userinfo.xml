@@ -143,7 +143,9 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="5dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="5dp" />
+                    android:paddingBottom="5dp"
+
+                    />
 
             </LinearLayout>
 
@@ -206,11 +208,5 @@
                 />
 
         </androidx.cardview.widget.CardView>
-        <Button
-            android:id="@+id/btn_update_avt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="update"/>
     </RelativeLayout>
 </LinearLayout>
