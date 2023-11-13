@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
-import com.ttonline.vestman.databinding.ActivityScreenCartBinding;
 import com.ttonline.vestman.databinding.ActivityScreenDetailProductBinding;
+import com.ttonline.vestman.databinding.ActivityScreenDetailProductHotdealBinding;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.models.YourRequestClass;
@@ -26,16 +25,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Screen_detailProduct extends AppCompatActivity {
-    ActivityScreenDetailProductBinding binding;
-
-    private List<ProductModel> mListProduct;
+public class Screen_detailProductHotdeal extends AppCompatActivity {
+    ActivityScreenDetailProductHotdealBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        binding= ActivityScreenDetailProductBinding.inflate(getLayoutInflater());
+        binding= ActivityScreenDetailProductHotdealBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         ProductModel productModel = getIntent().getParcelableExtra("product");
@@ -47,14 +44,6 @@ public class Screen_detailProduct extends AppCompatActivity {
             Log.d("name product : ", productModel.getName_product());
             Log.d("price product : ", String.valueOf(productModel.getPrice()));
             Log.d("discount : ", String.valueOf(productModel.getId_discount()));
-            binding.btnboxchat.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(Screen_detailProduct.this,Screen_chatbot.class);
-                    intent.putExtra("id_Product", productModel.get_id());
-                    startActivity(intent);
-                }
-            });
             List<Integer> numbers = new ArrayList<>();
             for (int i = 1; i <= 10; i++) {
                 numbers.add(i);
@@ -78,7 +67,7 @@ public class Screen_detailProduct extends AppCompatActivity {
             binding.btnCancle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(Screen_detailProduct.this,Screen_navigation.class);
+                    Intent intent= new Intent(Screen_detailProductHotdeal.this,Screen_navigation.class);
                     startActivity(intent);
                 }
             });
@@ -97,7 +86,7 @@ public class Screen_detailProduct extends AppCompatActivity {
                             public void onResponse(Call<ResMessage> call, Response<ResMessage> response) {
                                 if (response.isSuccessful() && response.body() != null) {
                                     // Xử lý phản hồi thành công, response.body() chứa dữ liệu giỏ hàng mới
-                                    Intent intent = new Intent(Screen_detailProduct.this,Screen_cart.class);
+                                    Intent intent = new Intent(Screen_detailProductHotdeal.this,Screen_cart.class);
                                     startActivity(intent);
 
                                     // Thực hiện các thao tác sau khi thêm sản phẩm vào giỏ hàng thành công
@@ -117,7 +106,7 @@ public class Screen_detailProduct extends AppCompatActivity {
                         });
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(Screen_detailProduct.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Screen_detailProductHotdeal.this, "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -125,7 +114,6 @@ public class Screen_detailProduct extends AppCompatActivity {
 
 
         }
-
 
 
     }

@@ -7,16 +7,20 @@ import androidx.annotation.NonNull;
 
 import java.util.Date;
 
+
 public class IdDiscount implements Parcelable {
     public String _id;
     public int value;
-    public Date started_at;
-    public Date expires_at;
+    public String started_at;
+    public String expires_at;
     public int __v;
+
 
     protected IdDiscount(Parcel in) {
         _id = in.readString();
         value = in.readInt();
+        started_at = in.readString();
+        expires_at = in.readString();
         __v = in.readInt();
     }
 
@@ -48,19 +52,19 @@ public class IdDiscount implements Parcelable {
         this.value = value;
     }
 
-    public Date getStarted_at() {
+    public String getStarted_at() {
         return started_at;
     }
 
-    public void setStarted_at(Date started_at) {
+    public void setStarted_at(String started_at) {
         this.started_at = started_at;
     }
 
-    public Date getExpires_at() {
+    public String getExpires_at() {
         return expires_at;
     }
 
-    public void setExpires_at(Date expires_at) {
+    public void setExpires_at(String expires_at) {
         this.expires_at = expires_at;
     }
 
@@ -72,6 +76,7 @@ public class IdDiscount implements Parcelable {
         this.__v = __v;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -81,6 +86,8 @@ public class IdDiscount implements Parcelable {
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(_id);
         dest.writeInt(value);
+        dest.writeString(started_at);
+        dest.writeString(expires_at);
         dest.writeInt(__v);
     }
 }

@@ -3,6 +3,7 @@ package com.ttonline.vestman.Arapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,10 @@ import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.models.Datum;
 import com.ttonline.vestman.models.IdProduct;
+import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.screen.Screen_cart;
+import com.ttonline.vestman.screen.Screen_detailProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,13 +56,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return new CartViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
+
         Datum datum=list_cart.get(position);
+        IdProduct idProduct = datum.getId_product();
         if (datum == null || datum.getId_product() == null) {
             return;
         }
-        IdProduct idProduct = datum.getId_product();
+
         Picasso.get().load(idProduct.getImages().get(0)).into(holder.imageView);
         holder.name.setText(idProduct.getName_product());
         holder.gia.setText("Price: " + String.valueOf(idProduct.getPrice()) + " VNĐ");
@@ -111,7 +117,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return 0;
     }
 
-    public static class CartViewHolder extends RecyclerView.ViewHolder {
+    public class CartViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView;
         private ImageButton btn_delete;
         private TextView name,gia,color,size,quantity;

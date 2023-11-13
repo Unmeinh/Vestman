@@ -110,7 +110,7 @@ private void callApiGetProduct() {
                 if (root.isSuccess()) {
                     ArrayList<ProductModel> productList = root.getData();
                     mListProduct.addAll(productList);
-
+                    Log.d("", String.valueOf(mListProduct));
                     // Tạo và cấu hình adapter
                     ProductArapter productArapter = new ProductArapter(mListProduct, getContext());
                     binding.rcvProduct.setAdapter(productArapter);

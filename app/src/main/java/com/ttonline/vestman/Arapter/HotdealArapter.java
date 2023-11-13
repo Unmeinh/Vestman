@@ -26,6 +26,7 @@ import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.models.YourRequestClass;
 import com.ttonline.vestman.screen.Screen_cart;
 import com.ttonline.vestman.screen.Screen_detailProduct;
+import com.ttonline.vestman.screen.Screen_detailProductHotdeal;
 
 import java.util.ArrayList;
 import java.util.List;

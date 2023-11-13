@@ -12,8 +12,8 @@ public class ModelSlideShow implements Parcelable {
     public String thumbnailImage;
     public String description;
     public ProductModel id_product;
-    public Date expires_at;
-    public Date created_at;
+    public String expires_at;
+    public String created_at;
     public int __v;
 
 
@@ -22,21 +22,9 @@ public class ModelSlideShow implements Parcelable {
         thumbnailImage = in.readString();
         description = in.readString();
         id_product = in.readParcelable(ProductModel.class.getClassLoader());
+        expires_at = in.readString();
+        created_at = in.readString();
         __v = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_id);
-        dest.writeString(thumbnailImage);
-        dest.writeString(description);
-        dest.writeParcelable(id_product, flags);
-        dest.writeInt(__v);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<ModelSlideShow> CREATOR = new Creator<ModelSlideShow>() {
@@ -83,19 +71,27 @@ public class ModelSlideShow implements Parcelable {
         this.id_product = productModel;
     }
 
-    public Date getExpires_at() {
+    public ProductModel getId_product() {
+        return id_product;
+    }
+
+    public void setId_product(ProductModel id_product) {
+        this.id_product = id_product;
+    }
+
+    public String getExpires_at() {
         return expires_at;
     }
 
-    public void setExpires_at(Date expires_at) {
+    public void setExpires_at(String expires_at) {
         this.expires_at = expires_at;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
@@ -108,5 +104,19 @@ public class ModelSlideShow implements Parcelable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(_id);
+        dest.writeString(thumbnailImage);
+        dest.writeString(description);
+        dest.writeParcelable(id_product, flags);
+        dest.writeString(expires_at);
+        dest.writeString(created_at);
+        dest.writeInt(__v);
+    }
 }
