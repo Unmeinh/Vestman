@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,12 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".screen.Screen_detailProductHotdeal"
+            android:exported="false" />
+        <activity
+            android:name=".screen.Screen_detail_product_hotdeal"
+            android:exported="false" />
+        <activity
             android:name=".screen.Screen_detailProduct"
             android:exported="false" />
         <activity
             android:name=".screen.Screen_hot_deal"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".screen.Screen_chatbot"
             android:exported="false" />
@@ -50,7 +55,6 @@
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             >
-
         </activity>
         <activity
             android:name=".screen.Screen_signup"
@@ -59,7 +63,7 @@
         <activity
             android:name=".screen.Screen_login"
             android:exported="true"
-            android:theme="@style/Theme.Material3.DayNight.NoActionBar" >
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

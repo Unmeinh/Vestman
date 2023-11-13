@@ -20,7 +20,7 @@ public class ProductModel implements Parcelable {
     public int quantity;
     public int quantitySold;
     public int price;
-    public Date created_at;
+    public String created_at;
     public int __v;
 
 
@@ -130,11 +130,11 @@ public class ProductModel implements Parcelable {
         this.price = price;
     }
 
-    public Date getCreated_at() {
+    public String getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
