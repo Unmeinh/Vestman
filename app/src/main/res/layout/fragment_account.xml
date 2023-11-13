@@ -82,31 +82,31 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp"
-                >
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="10dp"-->
+<!--                >-->
 
-                <TextView
-                    android:id="@+id/txt_chatbot"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Chatbot"
-                    android:textSize="20dp"
-                    android:paddingLeft="20dp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    />
+<!--                <TextView-->
+<!--                    android:id="@+id/txt_chatbot"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:text="Chatbot"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:paddingLeft="20dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold"-->
+<!--                    />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black"
-                    />
-            </LinearLayout>
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="@color/black"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

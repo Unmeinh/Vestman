@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,9 +32,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
+import com.ttonline.vestman.models.AvtRequest;
 import com.ttonline.vestman.models.ClientModel;
 import com.ttonline.vestman.models.ClientUpdateModel;
 import com.ttonline.vestman.models.LoginResponse;
@@ -44,6 +54,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.UUID;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,13 +69,14 @@ import retrofit2.Response;
 public class Screen_userinfo extends AppCompatActivity {
     private static final int MY_REQUEST_CODE = 10;
     private ImageButton btn_back;
-    private Button btn_info_update,btn_update_avt;
+    private Button btn_info_update;
     private EditText ed_info_name,ed_info_email,ed_info_phone,ed_info_address;
     private ImageView img_avatar;
     Handler mainHandler = new Handler();
     private String id = "";
     private Uri mUri;
     Context context;
+    private String avatarUrl="";
 
 
     private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
@@ -95,6 +110,7 @@ public class Screen_userinfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_screen_userinfo);
         btn_back = findViewById(R.id.btn_userinfo_back);
         img_avatar = findViewById(R.id.img_user);
@@ -103,7 +119,11 @@ public class Screen_userinfo extends AppCompatActivity {
         ed_info_phone = findViewById(R.id.ed_info_phone);
         ed_info_address = findViewById(R.id.ed_info_address);
         btn_info_update = findViewById(R.id.btn_update_info);
-        btn_update_avt = findViewById(R.id.btn_update_avt);
+
+
+
+
+
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("userId")) {
@@ -145,26 +165,15 @@ public class Screen_userinfo extends AppCompatActivity {
             }
 
             private void updateUserInfo(){
-
-                callApiUpdateUserInfo();
-            }
-        });
-
-        btn_update_avt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //check avt
                 if (mUri != null){
-                    callApiUpdateUserAvt();
-
+                    callApiUpdateUserInfo();
+                    updateUserAvt();
                 } else {
+                    callApiUpdateUserInfo();
                     Log.d("zzzzz", "ko cập nhật ảnh");
-                    Toast.makeText(Screen_userinfo.this, "Chưa chọn ảnh!!!", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
-
 
         img_avatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +192,6 @@ public class Screen_userinfo extends AppCompatActivity {
                     SignupResponse signupResponse = response.body();
                     if (signupResponse.isSuccess()){
                         ClientModel client = signupResponse.getData();
-                        Log.d("zzzz", "userinfo: "+client);
 
                         ed_info_name.setText(client.getFull_name());
                         ed_info_email.setText(client.getEmail());
@@ -208,14 +216,62 @@ public class Screen_userinfo extends AppCompatActivity {
         });
     }
 
-    private void callApiUpdateUserAvt() {
+    private void updateUserAvt() {
         String strRealPath = RealPathUtil.getRealPath(this,mUri);
-        Log.e("zzzzzimg", strRealPath );
-        File file = new File(strRealPath);
-        RequestBody requestBodyAvt = RequestBody.create(MediaType.parse("image/*"),file);
-        MultipartBody.Part multiparkBodyAvt = MultipartBody.Part.createFormData("imageUrl",file.getName(),requestBodyAvt);
+//        Log.e("zzzzzimg", strRealPath );
 
-        ApiService.apiservice.updateAvt(id,multiparkBodyAvt).enqueue(new Callback<LoginResponse>() {
+        if(strRealPath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+
+
+
+            FirebaseApp.initializeApp(this);
+
+            String imgName = UUID.randomUUID().toString();
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images/avatar/client/"+imgName);
+
+            storageReference.putFile(mUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    avatarUrl = uri.toString();
+                                    Log.d("zzzzz_imgurl", "onSuccess: "+avatarUrl);
+                                    callApiUpdateUserAvt(avatarUrl);
+                                }
+                            });
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(Screen_userinfo.this, "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+
+    private void callApiUpdateUserAvt(String avatarUrl) {
+        Log.d("zzzzz_imgurl_update", "upload: "+avatarUrl);
+
+        AvtRequest avtRequest = new AvtRequest(avatarUrl);
+        ApiService.apiservice.updateAvt(id,avtRequest).enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if(response.isSuccessful() && response.body() != null){
@@ -242,11 +298,19 @@ public class Screen_userinfo extends AppCompatActivity {
                 Log.d("zzzzz", t.getMessage());
             }
         });
-
     }
 
+
+
+
+
     private void callApiUpdateUserInfo() {
-        ClientUpdateModel modelUpdate = new ClientUpdateModel(ed_info_name.getText().toString(),ed_info_email.getText().toString(),ed_info_address.getText().toString(),Integer.parseInt(ed_info_phone.getText().toString()));
+        ClientUpdateModel modelUpdate = new ClientUpdateModel(
+                ed_info_name.getText().toString(),
+                ed_info_email.getText().toString(),
+                ed_info_address.getText().toString(),
+                Integer.parseInt(ed_info_phone.getText().toString())
+        );
         ApiService.apiservice.updateClient(id,modelUpdate).enqueue(new Callback<ClientUpdateModel>() {
             @Override
             public void onResponse(Call<ClientUpdateModel> call, Response<ClientUpdateModel> response) {

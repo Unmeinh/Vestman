@@ -6,13 +6,22 @@ import java.util.Objects;
 
 public class BillItemModel {
     private String _id,size;
-    private int quantity;
+    private int quantity,price;
     private IdProduct id_product;
 
-    public BillItemModel(String size, int quantity, IdProduct id_product) {
+    public BillItemModel(String size, int quantity, int price, IdProduct id_product) {
         this.size = size;
         this.quantity = quantity;
+        this.price = price;
         this.id_product = id_product;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String get_id() {

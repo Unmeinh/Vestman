@@ -1,6 +1,7 @@
 package com.ttonline.vestman.Api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.ttonline.vestman.models.AvtRequest;
 import com.ttonline.vestman.models.ChatbotResponse;
 import com.ttonline.vestman.models.ClientUpdateModel;
 import com.ttonline.vestman.models.LoginRequest;
@@ -37,7 +38,7 @@ public interface ApiService {
 
     ApiService apiservice= new Retrofit.Builder()
 
-            .baseUrl("http://192.168.45.108:3000/")
+            .baseUrl("http://192.168.1.31:3000/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
@@ -45,17 +46,13 @@ public interface ApiService {
     @GET("api/product/list")
     Call<Root> getProduct();
 
-
     @GET("api/blog/list")
     Call<RootSlideShow> getSideShow();
-
-    @GET("api/bill/list/{id}")
-    Call<RootBill> getBills(@Path("id") String id);
 
     @PUT("api/client/updateClient/{id}")
     Call<ClientUpdateModel> updateClient(@Path("id") String id, @Body ClientUpdateModel clientUpdateModel);
     @PUT("api/client/updateAvatar/{id}")
-    Call<LoginResponse> updateAvt(@Path("id") String id, @Body MultipartBody.Part imageUrl);
+    Call<LoginResponse> updateAvt(@Path("id") String id, @Body AvtRequest avtRequest);
 
     @PUT("api/client/updatePassword/{id}")
     Call<SignupResponse> updatePassword(@Path("id") String id, @Body ResetPassRequest resetPassRequest);
@@ -72,8 +69,15 @@ public interface ApiService {
     @GET("api/chatbot/product/{id}")
     Call<ChatbotResponse> getChatbot(@Path("id") String id);
 
-    @GET("api/bill/list/{id}")
-    Call<RootBill> getBill(@Path("id") String id);
+    @GET("api/bill/list/incomplete/{id}")
+    Call<RootBill> getIncompleteBill(@Path("id") String id);
+
+    @GET("api/bill/list/complete/{id}")
+    Call<RootBill> getCompleteBill(@Path("id") String id);
+
+    @PUT("api/bill/confirmReceive/{id}")
+    Call<RootBill> confirmRecive(@Path("id")String id);
+
 
     @GET("api/cart/list/{id_client}")
     Call<Root_cart> getCartItems(@Path("id_client") String id_client);

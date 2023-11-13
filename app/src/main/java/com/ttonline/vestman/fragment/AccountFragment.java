@@ -81,21 +81,26 @@ public class AccountFragment extends Fragment {
         txtUserInfo = view.findViewById(R.id.txt_userinfo);
         txtLogout = view.findViewById(R.id.txt_logout);
         txtResetPass = view.findViewById(R.id.txt_resetpass);
-        txtChatbot = view.findViewById(R.id.txt_chatbot);
+//        txtChatbot = view.findViewById(R.id.txt_chatbot);
         tv_OrderHistory = view.findViewById(R.id.txt_orderhistory);
         img_user = view.findViewById(R.id.img_account);
         tv_username = view.findViewById(R.id.tv_username);
 
         callApiGetUser();
 
-        txtUserInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Screen_userinfo.class);
-                intent.putExtra("userId",userId);
-                startActivity(intent);
-            }
-        });
+        try {
+            txtUserInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), Screen_userinfo.class);
+                    intent.putExtra("userId",userId);
+                    startActivity(intent);
+                }
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         txtResetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +109,12 @@ public class AccountFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        txtChatbot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), Screen_chatbot.class));
-            }
-        });
+//        txtChatbot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getContext(), Screen_chatbot.class));
+//            }
+//        });
         tv_OrderHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,13 +128,9 @@ public class AccountFragment extends Fragment {
         txtLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 AlertDialog dialog = createDialog();
                 dialog.show();
-
             }
-
             AlertDialog createDialog(){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage("Confirm Logout");
@@ -142,7 +143,6 @@ public class AccountFragment extends Fragment {
                         editor.clear().commit();
                     }
                 });
-
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -165,7 +165,12 @@ public class AccountFragment extends Fragment {
                         tv_username.setText(client.getFull_name());
 
                         //ảnh
-                        Glide.with(getContext()).load(client.getAvatar()).into(img_user);
+                        try {
+                            Glide.with(getContext()).load(client.getAvatar()).into(img_user);
+
+                        } catch (Exception e) {
+//                            throw new RuntimeException(e);
+                        }
 
                     }else{
                         Log.d("zzzz", "userinfo: "+signupResponse.getMessage());
