@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,11 @@ import com.ttonline.vestman.models.Photo;
 import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.Root;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +47,7 @@ public class Screen_hot_deal extends AppCompatActivity {
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         binding= ActivityScreenHotDealBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        callApiGetProduct();
+//        callApiGetProduct();
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,10 +62,34 @@ public class Screen_hot_deal extends AppCompatActivity {
             if (modelSlideShow != null) {
                 // Bạn có thể sử dụng modelSlideShow để hiển thị dữ liệu trên màn hình Screen_hot_deal
                 String thumbnailImage = modelSlideShow.getThumbnailImage();
+                Log.d("modelSlideShow", String.valueOf(modelSlideShow));
                 mListProduct.add(modelSlideShow.getProductModel()) ;
                 String description = modelSlideShow.getDescription();
-                List<ModelSlideShow> mlistpro=new ArrayList<>();
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
+                SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
+// Log ngày bắt đầu
+                Date startDate = null;
+                try {
+                    startDate = inputFormat.parse(modelSlideShow.getCreated_at());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                String formattedStartDate = outputFormat.format(startDate);
+                Log.d("Ngày bắt đầu:", formattedStartDate);
+
+// Log ngày kết thúc
+                Date endDate = null;
+                try {
+                    endDate = inputFormat.parse(modelSlideShow.getExpires_at());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                String formattedEndDate = outputFormat.format(endDate);
+                Log.d("Ngày kết thúc:", formattedEndDate);
+                binding.startdate.setText("start date: "+formattedStartDate);
+                binding.enddate.setText("end date: "+formattedEndDate);
+                List<ModelSlideShow> mlistpro=new ArrayList<>();
                 Picasso.get().load(modelSlideShow.getThumbnailImage()).into(binding.imgSlideshow);
                 binding.tvDescription.setText(description);
                 HotdealArapter hotdealArapter = new HotdealArapter(mListProduct, Screen_hot_deal.this);
@@ -73,32 +101,5 @@ public class Screen_hot_deal extends AppCompatActivity {
 
     }
 
-    private void callApiGetProduct() {
-        ApiService.apiservice.getProduct().enqueue(new Callback<Root>() {
-            @Override
-            public void onResponse(Call<Root> call, Response<Root> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Root root = response.body();
-                    if (root.isSuccess()) {
-                        ArrayList<ProductModel> productList = root.getData();
-                        mListProduct.addAll(productList);
 
-                        // Tạo và cấu hình adapter
-                        HotdealArapter hotdealArapter = new HotdealArapter(mListProduct, Screen_hot_deal.this);
-                        binding.gridProd.setAdapter(hotdealArapter);
-                    } else {
-                        Toast.makeText(Screen_hot_deal.this, "Error in API response: " + root.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(Screen_hot_deal.this, "Error in response", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Root> call, Throwable t) {
-                Toast.makeText(Screen_hot_deal.this, "onFailure", Toast.LENGTH_SHORT).show();
-                Log.d("tttt", t.getMessage());
-            }
-        });
-    }
 }

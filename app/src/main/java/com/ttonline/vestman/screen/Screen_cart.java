@@ -36,6 +36,7 @@ public class Screen_cart extends AppCompatActivity {
     List<Datum> list_cart=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
@@ -62,15 +63,14 @@ public class Screen_cart extends AppCompatActivity {
                     Root_cart rootCart = response.body();
                     if (rootCart.isSuccess()) {
                         ArrayList<Datum> cartData = rootCart.getData();
-//                        list_cart.clear();
-//                        list_cart.addAll(cartData);
-                        list_cart=response.body().getData();
+                        list_cart.addAll(cartData);
+                        Log.d("TAG", String.valueOf(response.body().getData()));
                         // Tạo và cấu hình adapter
                         CartAdapter cartAdapter = new CartAdapter(list_cart,Screen_cart.this);
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Screen_cart.this);
-                        binding.rcvCart.setLayoutManager(linearLayoutManager);
-                        DividerItemDecoration itemDecoration= new DividerItemDecoration(Screen_cart.this,DividerItemDecoration.VERTICAL);
-                        binding.rcvCart.addItemDecoration(itemDecoration);
+//                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Screen_cart.this);
+//                        binding.rcvCart.setLayoutManager(linearLayoutManager);
+//                        DividerItemDecoration itemDecoration= new DividerItemDecoration(Screen_cart.this,DividerItemDecoration.VERTICAL);
+//                        binding.rcvCart.addItemDecoration(itemDecoration);
                         binding.rcvCart.setAdapter(cartAdapter);
                         // Xóa dữ liệu cũ
                         // Thêm dữ liệu mới
@@ -87,7 +87,6 @@ public class Screen_cart extends AppCompatActivity {
             public void onFailure(Call<Root_cart> call, Throwable t) {
                 // Xử lý lỗi kết nối hoặc lỗi khác nếu có
                 Toast.makeText(Screen_cart.this, "Failed to fetch cart data. Please check your internet connection.", Toast.LENGTH_SHORT).show();
-                t.printStackTrace();
             }
         });
     }

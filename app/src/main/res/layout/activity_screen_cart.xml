@@ -49,6 +49,7 @@
             android:layout_height="match_parent"
             android:id="@+id/rcv_cart"
             android:padding="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
     </LinearLayout>
     <LinearLayout
