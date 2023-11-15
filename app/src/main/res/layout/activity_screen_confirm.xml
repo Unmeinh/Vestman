@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.Screen_cart"
+    tools:context=".screen.Screen_confirm"
     android:orientation="vertical"
     android:weightSum="12"
     >
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_weight="9"
             android:layout_height="match_parent"
-            android:text="Shopping Cart"
+            android:text="Confirm"
             android:gravity="center"
             android:textSize="25dp"
             android:textStyle="bold"
@@ -90,11 +90,11 @@
             android:layout_weight="7"
             android:padding="20dp">
             <Button
-                android:id="@+id/btn_cartt"
+                android:id="@+id/btn_n4"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:backgroundTint="#2E9DFF"
-                android:text="continue"
+                android:text="Confirm"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:background="@drawable/bg_button"

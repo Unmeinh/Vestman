@@ -17,6 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".screen.Screen_shiping"
+            android:exported="false" />
+        <activity
+            android:name=".screen.Screen_Odersucces"
+            android:exported="false" />
+        <activity
+            android:name=".screen.Screen_payment"
+            android:exported="false" />
+        <activity
+            android:name=".screen.Screen_confirm"
+            android:exported="false" />
+        <activity
             android:name=".screen.Screen_orderdetailitem"
             android:exported="false" />
         <activity
