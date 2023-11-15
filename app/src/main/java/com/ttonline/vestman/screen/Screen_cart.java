@@ -50,6 +50,13 @@ public class Screen_cart extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.btnCartt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(Screen_cart.this,Screen_shiping.class);
+                startActivity(intent);
+            }
+        });
     }
     private void callApiGetCart() {
         String userId = "650c27f6cbe42ee7d05816d8"; // Thay thế bằng ID người dùng thực tế
