@@ -87,8 +87,8 @@ public class Screen_hot_deal extends AppCompatActivity {
                 }
                 String formattedEndDate = outputFormat.format(endDate);
                 Log.d("Ngày kết thúc:", formattedEndDate);
-                binding.startdate.setText("start date: "+formattedStartDate);
-                binding.enddate.setText("end date: "+formattedEndDate);
+                binding.startdate.setText("Start date: "+formattedStartDate);
+                binding.enddate.setText("End date: "+formattedEndDate);
                 List<ModelSlideShow> mlistpro=new ArrayList<>();
                 Picasso.get().load(modelSlideShow.getThumbnailImage()).into(binding.imgSlideshow);
                 binding.tvDescription.setText(description);
