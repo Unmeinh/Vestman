@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pri_blue"
+    tools:context=".screen.Screen_orderhistory"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
+        android:weightSum="3"
+        >
+
+        <ImageButton
+            android:id="@+id/btn_orderhistory_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_back_button"
+            android:src="@drawable/baseline_keyboard_backspace_24"
+            />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Orders"
+            android:layout_weight="2"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/custom_background"
+        >
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/bill_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.tabs.TabItem
+                android:text="Incomepleted Bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.tabs.TabItem
+                android:text="Comepleted Bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/bill_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

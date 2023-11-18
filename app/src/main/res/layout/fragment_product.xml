@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HomeFragment"
+    android:orientation="vertical"
+    android:weightSum="10"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7.5"
+        android:background="#2E9DFF"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2E9DFF"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            android:weightSum="10"
+            android:gravity="center"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="VESTMAN"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+            <ImageButton
+                android:id="@+id/btn_cart"
+                android:layout_width="match_parent"
+                android:layout_weight="8.5"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login"
+                android:src="@drawable/baseline_shopping_cart_24_black"
+                android:layout_gravity="center"
+                android:padding="10dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="40dp"
+            android:paddingTop="20dp"
+            >
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login">
+
+            </androidx.appcompat.widget.SearchView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5"
+        android:background="#19000000"
+        >
+        <GridView
+            android:numColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rcvProduct"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:verticalSpacing="10dp"
+            />
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

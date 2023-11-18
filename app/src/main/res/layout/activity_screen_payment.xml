@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screen.Screen_payment"
+    android:orientation="vertical"
+    android:weightSum="11.5"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="horizontal"
+        android:weightSum="12"
+        android:padding="20dp"
+        android:background="#2E9DFF"
+        >
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.8"
+            android:background="@drawable/bg_login"
+            android:padding="10dp"
+            android:src="@drawable/baseline_keyboard_backspace_24"
+
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_height="match_parent"
+            android:text="Payment"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/imgc2"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="13"
+                        >
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_weight="5"
+                            android:layout_height="70dp"
+                            android:src="@drawable/cod"
+                            android:padding="10dp"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="COD \nCash On Delivery"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:weightSum="13"
+                        >
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_weight="5"
+                            android:layout_height="70dp"
+                            android:src="@drawable/card"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="6"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:text="Credit Cart"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/rg_payment"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="5"
+                    >
+                    <RadioButton
+                        android:checked="true"
+                        android:id="@+id/rbtn_cod"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        />
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <RadioButton
+                        android:id="@+id/rbtn_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"/>
+                </RadioGroup>
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            >
+            <Button
+                android:id="@+id/btn_n3"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Confirm"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
