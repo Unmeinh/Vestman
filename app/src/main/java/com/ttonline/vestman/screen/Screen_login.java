@@ -163,7 +163,7 @@ public class Screen_login extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    Log.d("zzzzz", "onResponse: Call login Failed");
+                    Log.d("zzzzz", "onResponse: "+t.getMessage());
 
                 }
             });
