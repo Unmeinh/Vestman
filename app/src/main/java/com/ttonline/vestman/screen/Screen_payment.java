@@ -48,12 +48,11 @@ ActivityScreenPaymentBinding binding;
                 switch (checkedId){
                     case R.id.rbtn_cod:
                         paymentMethod = 0;
-                        Toast.makeText(Screen_payment.this,"pay "+paymentMethod,Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.rbtn_card:
-                        paymentMethod = 1;
-                        Toast.makeText(Screen_payment.this,"pay "+paymentMethod,Toast.LENGTH_SHORT).show();
+//                        paymentMethod = 1;
+                        Toast.makeText(Screen_payment.this,"This function is in deverlop",Toast.LENGTH_SHORT).show();
 
                         break;
                 }

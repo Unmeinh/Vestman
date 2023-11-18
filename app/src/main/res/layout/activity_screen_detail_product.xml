@@ -79,85 +79,94 @@
             android:orientation="vertical"
 
             >
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="Bộ vest nam ASU00102"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:gravity="center"
-                >
 
-            </TextView>
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:text="7000000 VNĐ"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:gravity="center"
-                >
-            </TextView>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:layout_weight="1">
-               <TextView
-                   android:id="@+id/soluongdaban"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="Số lượng đã bán :"
-                   android:layout_marginBottom="5dp"
-
-                   >
-               </TextView>
-               <TextView
-                   android:id="@+id/soluong"
-                   android:layout_width="0dp"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:text="Số lượng còn lại:"
-                   android:layout_marginBottom="5dp"
-
-                   >
-               </TextView>
-           </LinearLayout>
-            <TextView
-                android:id="@+id/color"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Màu sắc:"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:layout_marginBottom="5dp"
-
-                >
-            </TextView>
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="10"
                 android:layout_marginBottom="5dp"
                 >
-                <TextView
-                    android:id="@+id/detail_product"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Thiết kế: "
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:orientation="vertical"
+                    android:weightSum="10"
                     >
-                </TextView>
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:text="Bộ vest nam ASU00102"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        >
+
+                    </TextView>
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:text="7000000 VNĐ"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        >
+                    </TextView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2">
+                        <TextView
+                            android:id="@+id/soluongdaban"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Số lượng đã bán :"
+                            android:layout_marginBottom="5dp"
+
+                            >
+                        </TextView>
+                        <TextView
+                            android:id="@+id/soluong"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Số lượng còn lại:"
+                            android:layout_marginBottom="5dp"
+
+                            >
+                        </TextView>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/color"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:text="Màu sắc:"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="5dp"
+
+                        >
+                    </TextView>
+                    <TextView
+                        android:id="@+id/detail_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Thiết kế: "
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        >
+                    </TextView>
+                </LinearLayout>
+
             </ScrollView>
 
             <LinearLayout
