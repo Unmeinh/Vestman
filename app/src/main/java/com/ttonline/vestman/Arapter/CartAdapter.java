@@ -87,7 +87,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         Picasso.get().load(idProduct.getImages().get(0)).into(holder.imageView);
         holder.name.setText(idProduct.getName_product());
-        holder.gia.setText("Price: " + String.valueOf(idProduct.getPrice()) + " VNĐ");
+        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        String total = format.format(idProduct.getPrice());
+        holder.gia.setText("Price: " + total);
         holder.color.setText("Color: " + idProduct.getColor());
         holder.size.setText("Size: "+datum.getSize());
         holder.quantity.setText("Quantity : "+datum.getQuantity());
