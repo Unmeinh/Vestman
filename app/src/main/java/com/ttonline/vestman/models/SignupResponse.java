@@ -3,9 +3,9 @@ package com.ttonline.vestman.models;
 import java.util.ArrayList;
 
 public class SignupResponse {
-    public boolean success;
-    public ClientModel data;
-    public String message;
+    private boolean success;
+    private ClientModel data;
+    private String message;
 
     public boolean isSuccess() {
         return success;

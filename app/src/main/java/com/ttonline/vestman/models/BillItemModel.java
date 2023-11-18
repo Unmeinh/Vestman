@@ -1,12 +1,27 @@
 package com.ttonline.vestman.models;
 
-public class BillItemModel {
-    public String _id, id_product,size,quantity;
 
-    public BillItemModel(String id_product, String size, String quantity) {
-        this.id_product = id_product;
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class BillItemModel {
+    private String _id,size;
+    private int quantity,price;
+    private IdProduct id_product;
+
+    public BillItemModel(String size, int quantity, int price, IdProduct id_product) {
         this.size = size;
         this.quantity = quantity;
+        this.price = price;
+        this.id_product = id_product;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String get_id() {
@@ -17,13 +32,6 @@ public class BillItemModel {
         this._id = _id;
     }
 
-    public String getId_product() {
-        return id_product;
-    }
-
-    public void setId_product(String id_product) {
-        this.id_product = id_product;
-    }
 
     public String getSize() {
         return size;
@@ -33,11 +41,19 @@ public class BillItemModel {
         this.size = size;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public IdProduct getId_product() {
+        return id_product;
+    }
+
+    public void setId_product(IdProduct id_product) {
+        this.id_product = id_product;
     }
 }

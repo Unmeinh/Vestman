@@ -1,17 +1,20 @@
 package com.ttonline.vestman.screen;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.ttonline.vestman.Adapter.BillAdapter;
+import com.ttonline.vestman.Adapter.ViewPagerAdapter;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
-import com.ttonline.vestman.models.BillItemModel;
 import com.ttonline.vestman.models.BillModel;
 import com.ttonline.vestman.models.RootBill;
 
@@ -24,89 +27,60 @@ import retrofit2.Response;
 
 public class Screen_orderhistory extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private BillAdapter billAdapter;
     private List<BillModel> mListBill = new ArrayList<>();
-    private ArrayList<BillItemModel> mListBillItem = new ArrayList<>();
+    private String idUser = "";
+    private ImageButton btn_back;
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager2;
+    private ViewPagerAdapter viewPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        CallApiGetBillHL();
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("userId")) {
+            idUser = intent.getStringExtra("userId");
+        }
 
         setContentView(R.layout.activity_sreen_orderhistory);
+        btn_back = findViewById(R.id.btn_orderhistory_back);
 
-        mListBillItem.add(new BillItemModel("1","XL","10"));
-        mListBillItem.add(new BillItemModel("2","XL","10"));
-        mListBillItem.add(new BillItemModel("3","XL","10"));
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
-        recyclerView = findViewById(R.id.rcv_order);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        //
+        tabLayout = findViewById(R.id.bill_tabLayout);
+        viewPager2 = findViewById(R.id.bill_viewPager);
 
-        mListBill.add(new BillModel("1",mListBillItem,3,null));
-        mListBill.add(new BillModel("2",mListBillItem,3,null));
-        mListBill.add(new BillModel("3",mListBillItem,3,null));
+        viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPager2.setAdapter(viewPagerAdapter);
 
-        billAdapter = new BillAdapter(mListBill);
-        recyclerView.setAdapter(billAdapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
 
-    }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-    public void CallApiGetBillHL(){
-        Toast.makeText(Screen_orderhistory.this, "load bill", Toast.LENGTH_SHORT).show();
+            }
 
-//        Call<List<BillModel>> call = ApiService.apiservice.getBillsHL();
-//        call.enqueue(new Callback<List<BillModel>>() {
-//            @Override
-//            public void onResponse(Call<List<BillModel>> call, Response<List<BillModel>> response) {
-//                if(response.isSuccessful()){
-//                    mListBill = response.body();
-//                    Log.d("zzzzz", "onResponse: "+response.body());
-//
-//                    billAdapter = new BillAdapter(mListBill);
-//                    recyclerView.setAdapter(billAdapter);
-//                    Toast.makeText(Screen_orderhistory.this, "bill loaded", Toast.LENGTH_SHORT).show();
-//
-//                }else{
-//                    Toast.makeText(Screen_orderhistory.this, "error bill", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<BillModel>> call, Throwable t) {
-//                Toast.makeText(Screen_orderhistory.this, "error bill 2", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-//        ApiService.apiservice.getBillsHL().enqueue(new Callback<RootBill>() {
-//            @Override
-//            public void onResponse(Call<RootBill> call, Response<RootBill> response) {
-//                if(response.isSuccessful() && response.body() != null){
-//                    RootBill rootBill = response.body();
-//                    if (rootBill.isSuccess()){
-//                        mListBill = rootBill.getData();
-//                        billAdapter = new BillAdapter(mListBill);
-//                        recyclerView.setAdapter(billAdapter);
-//
-//                    }else {
-//                        Toast.makeText(Screen_orderhistory.this, "Error in API response: " + rootBill.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(Screen_orderhistory.this, "Error in response", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RootBill> call, Throwable t) {
-//                Toast.makeText(Screen_orderhistory.this, "onFailure", Toast.LENGTH_SHORT).show();
-//                Log.d("tttt", t.getMessage());
-//            }
-//        });
-
-
-
-
-
+            }
+        });
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
     }
 }

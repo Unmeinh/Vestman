@@ -21,7 +21,7 @@
         >
 
         <ImageButton
-            android:id="@+id/btn_resetpass_back"
+            android:id="@+id/btn_orderhistory_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -44,15 +44,36 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcv_order"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/custom_background"
         android:orientation="vertical"
-        android:paddingTop="15dp"
-        tools:listitem="@layout/item_order">
+        android:background="@drawable/custom_background"
+        >
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/bill_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-    </androidx.recyclerview.widget.RecyclerView>
+            <com.google.android.material.tabs.TabItem
+                android:text="Incomepleted Bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <com.google.android.material.tabs.TabItem
+                android:text="Comepleted Bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/bill_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
 </LinearLayout>

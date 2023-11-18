@@ -78,66 +78,33 @@
                     android:id="@+id/btn_quest_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Bộ vest này còn hàng không shop?"
+                    android:text="q1"
                     android:background="@drawable/custom_button"
                     android:padding="8dp"
                     android:layout_marginRight="20dp"
+                    android:maxWidth="200dp"
                     />
                 <Button
                     android:id="@+id/btn_quest_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Tôi muốn biết mình vừa với size bao nhiêu thì phải làm sao?"
+                    android:text="q2"
                     android:background="@drawable/custom_button"
                     android:padding="8dp"
                     android:layout_marginRight="20dp"
+                    android:maxWidth="200dp"
                     />
                 <Button
                     android:id="@+id/btn_quest_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="Bộ vest này có màu nào khác không shop?"
+                    android:text="q3"
                     android:background="@drawable/custom_button"
                     android:padding="8dp"
+                    android:maxWidth="200dp"
                     android:layout_marginRight="20dp"
                     />
-
             </LinearLayout>
         </HorizontalScrollView>
-
-
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/layout_msg"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:background="@color/gray"-->
-<!--            android:padding="5dp"-->
-<!--            >-->
-<!--            <EditText-->
-<!--                android:id="@+id/ed_chatbot_chat"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_toLeftOf="@+id/fab_chatbot_chat"-->
-<!--                android:layout_marginRight="15dp"-->
-<!--                android:singleLine="true"-->
-<!--                android:hint="Enter Message"-->
-<!--                />-->
-
-<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--                android:id="@+id/fab_chatbot_chat"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:src="@drawable/uil_message"-->
-<!--                app:fabCustomSize="50dp"-->
-<!--                android:backgroundTint="@color/pri_blue"-->
-<!--                android:tint="@color/white"-->
-<!--                />-->
-
-<!--        </RelativeLayout>-->
-
     </RelativeLayout>
-
 </LinearLayout>

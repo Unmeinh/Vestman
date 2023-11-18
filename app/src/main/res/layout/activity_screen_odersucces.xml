@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:weightSum="11.5"
+    android:background="@color/white"
+    tools:context=".screen.Screen_Odersucces">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="horizontal"
+        android:weightSum="12"
+        android:padding="20dp"
+        android:background="@color/pri_blue"
+        >
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.8"
+            android:padding="10dp"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="9"
+            android:layout_height="match_parent"
+            android:text="Oder Successfully"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/imgc4"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Your order has been placed successfully"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:gravity="center"
+            >
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank you for choosing us! Feel free to continue shopping and explore our wide range of products. Happy Shopping!"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"
+            />
+
+        <Button
+            android:id="@+id/btn_n5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="60dp"
+            android:background="@drawable/custom_button"
+            android:text="Continue Shopping"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
