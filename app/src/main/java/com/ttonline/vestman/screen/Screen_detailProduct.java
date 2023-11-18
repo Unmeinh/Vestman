@@ -59,10 +59,12 @@ public class Screen_detailProduct extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            int quantity=productModel.getQuantity();
             List<Integer> numbers = new ArrayList<>();
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= quantity; i++) {
                 numbers.add(i);
             }
+
             // Tạo một ArrayAdapter để kết nối dữ liệu với Spinner
             ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numbers);
             // Đặt kiểu giao diện cho Spinner khi nó được bung ra
