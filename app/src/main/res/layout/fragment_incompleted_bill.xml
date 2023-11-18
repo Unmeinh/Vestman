@@ -5,20 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".fragment.IncompletedBillFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_incomplete_bill"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/custom_background"
-            android:orientation="vertical"
-            android:paddingTop="15dp"
             >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Order History Empty"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_incomplete_bill"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_background"
+                    android:orientation="vertical"
+                    android:paddingTop="15dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="User "
-            />
+                </androidx.recyclerview.widget.RecyclerView>
+        </RelativeLayout>
+
+
+
+
 
 </FrameLayout>

@@ -79,7 +79,10 @@ public class CompleteFragment extends Fragment {
                     if (rootBill.isSuccess()){
                         Log.d("zzz-z", rootBill.getMessage());
                         mListBill = rootBill.getData();
-//                        Log.d("zzz-z", mListBill.get(0).getArr_product().get(0).getId_product().getName_product().toString());
+
+                        if (mListBill.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                        }
 
                         billAdapter = new BillAdapter(getContext(),mListBill);
                         recyclerView.setAdapter(billAdapter);

@@ -2,6 +2,7 @@ package com.ttonline.vestman.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,12 +21,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.Arapter.PhotoArapter;
 import com.ttonline.vestman.Arapter.ProductArapter;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.databinding.FragmentHomeBinding;
+import com.ttonline.vestman.models.ClientModel;
 import com.ttonline.vestman.models.ModelSlideShow;
 import com.ttonline.vestman.models.Photo;
 import com.ttonline.vestman.models.ProductModel;
@@ -45,6 +48,7 @@ public class HomeFragment extends Fragment {
     private List<ModelSlideShow> mListSlideShows=new ArrayList<>();
     private List<ModelSlideShow>mlistPhoto;
 
+    private String userId="";
 
     private Handler handler= new Handler(Looper.getMainLooper());
     private Runnable runnable =new Runnable() {
@@ -69,10 +73,15 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         Context context=getContext();
+
+        userId = getUserId();
+        Log.d("zzzczzz", "onCreateView: "+userId);
+
         binding.btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, Screen_cart.class);
+                intent.putExtra("userIdToCart",userId);
                 startActivity(intent);
             }
         });
@@ -101,7 +110,16 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-private void callApiGetProduct() {
+    /////////////////////////////
+    private String getUserId() {
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "");
+        Log.d("zzzz", "user id from product: "+userId);
+        return userId;
+    }
+    ///////////////////////////////
+
+    private void callApiGetProduct() {
     ApiService.apiservice.getProduct().enqueue(new Callback<Root>() {
         @Override
         public void onResponse(Call<Root> call, Response<Root> response) {

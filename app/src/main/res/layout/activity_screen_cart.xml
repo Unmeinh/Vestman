@@ -74,10 +74,11 @@
                 android:gravity="center"
                 />
             <TextView
+                android:id="@+id/tv_cart_bill_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="15.100.000 VNĐ"
+                android:text="0"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"

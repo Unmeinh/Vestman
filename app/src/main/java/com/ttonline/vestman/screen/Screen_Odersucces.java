@@ -21,19 +21,10 @@ public class Screen_Odersucces extends AppCompatActivity {
         binding= ActivityScreenOdersuccesBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(Screen_Odersucces.this,Screen_confirm.class);
-                startActivity(intent);
-            }
-        });
-
         binding.btnN5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent= new Intent(Screen_Odersucces.this,Screen_cart.class);
+                Intent intent= new Intent(Screen_Odersucces.this,Screen_navigation.class);
                 startActivity(intent);
             }
         });
