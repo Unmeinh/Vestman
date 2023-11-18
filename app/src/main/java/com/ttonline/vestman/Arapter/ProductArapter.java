@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -160,7 +161,10 @@ public class ProductArapter extends BaseAdapter {
                                 request.size= (String) spinner_size.getSelectedItem();
                                 // Cấu hình dữ liệu sản phẩm cần thêm vào giỏ hàng trong request
 
-                                ApiService.apiservice.insertToCart("650c27f6cbe42ee7d05816d8", request).enqueue(new Callback<ResMessage>() {
+                                SharedPreferences preferences = context.getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                                String userId = preferences.getString("user_id", "");
+                                Log.d("zzzz", "user id from product: "+userId);
+                                ApiService.apiservice.insertToCart(userId, request).enqueue(new Callback<ResMessage>() {
                                     @Override
                                     public void onResponse(Call<ResMessage> call, Response<ResMessage> response) {
                                         if (response.isSuccessful() && response.body() != null) {

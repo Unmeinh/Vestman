@@ -25,7 +25,9 @@ import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.models.ClientModel;
 import com.ttonline.vestman.models.SignupResponse;
+import com.ttonline.vestman.screen.Screen_cart;
 import com.ttonline.vestman.screen.Screen_chatbot;
+import com.ttonline.vestman.screen.Screen_detailProduct;
 import com.ttonline.vestman.screen.Screen_login;
 import com.ttonline.vestman.screen.Screen_navigation;
 import com.ttonline.vestman.screen.Screen_resetpassword;
@@ -40,7 +42,7 @@ import retrofit2.Response;
 public class AccountFragment extends Fragment {
 
 
-    private TextView txtUserInfo,txtResetPass,txtLogout,txtChatbot,tv_OrderHistory,tv_username;
+    private TextView txtUserInfo,txtResetPass,txtLogout,txtChatbot,tv_OrderHistory,tv_username,tv_cart;
     private ImageView img_user;
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -62,15 +64,8 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String user = "";
 
-        Bundle args = getArguments();
-        if (args!= null){
-            user = args.getString("userInfo");
-        }
-        Gson gson = new Gson();
-        ClientModel client = gson.fromJson(user, ClientModel.class);
-        userId = client.get_id();
+        userId = getUserId();
         Log.d("zzzczzz", "onCreateView: "+userId);
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
@@ -85,8 +80,16 @@ public class AccountFragment extends Fragment {
         tv_OrderHistory = view.findViewById(R.id.txt_orderhistory);
         img_user = view.findViewById(R.id.img_account);
         tv_username = view.findViewById(R.id.tv_username);
+        tv_cart = view.findViewById(R.id.txt_shoppingcart);
 
         callApiGetUser();
+        tv_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Screen_cart.class);
+                startActivity(intent);
+            }
+        });
 
         try {
             txtUserInfo.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +156,14 @@ public class AccountFragment extends Fragment {
             }
         });
     }
-
+    /////////////////////////////
+    private String getUserId() {
+        SharedPreferences preferences = getContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        String userId = preferences.getString("user_id", "");
+        Log.d("zzzz", "user id from product: "+userId);
+        return userId;
+    }
+    ///////////////////////////////
     private void callApiGetUser() {
         ApiService.apiservice.getUserDetail(userId).enqueue(new Callback<SignupResponse>() {
             @Override

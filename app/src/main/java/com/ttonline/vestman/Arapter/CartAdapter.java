@@ -3,7 +3,6 @@ package com.ttonline.vestman.Arapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -24,13 +20,12 @@ import com.ttonline.vestman.Api.ApiService;
 import com.ttonline.vestman.R;
 import com.ttonline.vestman.models.Datum;
 import com.ttonline.vestman.models.IdProduct;
-import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.screen.Screen_cart;
-import com.ttonline.vestman.screen.Screen_detailProduct;
 
-import java.util.ArrayList;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,9 +34,10 @@ import retrofit2.Response;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private List<Datum> list_cart;
     private Context context;
+    private TextView tv_total;
 
-    public CartAdapter(List<Datum> list_cart) {
-        this.list_cart = list_cart;
+    public void setTv_total(TextView tv_total) {
+        this.tv_total = tv_total;
     }
 
     public CartAdapter(List<Datum> list_cart, Context context) {
@@ -55,7 +51,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart,parent,false);
         return new CartViewHolder(view);
     }
+    public int calculateTotal(List<Datum> list_cart) {
+        int total = 0;
+        for (Datum item : list_cart) {
+            if (item.getId_product() != null){
+                total += item.getId_product().getPrice() * Integer.parseInt(item.getQuantity());
+            }
+        }
+        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        String str_total = format.format(total);
+        tv_total.setText(str_total);
+        return total;
+    }
 
+    public void setTotal(TextView tv_total){
+        int total = 0;
+        for (Datum item : list_cart) {
+            if (item.getId_product() != null){
+                total += item.getId_product().getPrice() * Integer.parseInt(item.getQuantity());
+            }
+        }
+        NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+        String str_total = format.format(total);
+        tv_total.setText(str_total);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
@@ -88,6 +107,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         callApiDeleteCartItem(datum._id);
                         // Cập nhật danh sách giỏ hàng và thông báo
                         list_cart.remove(datum);
+                        calculateTotal(list_cart);
                         notifyDataSetChanged();
                     }
                 });
@@ -122,6 +142,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         private ImageButton btn_delete;
         private TextView name,gia,color,size,quantity;
         private CardView cardView;
+
+
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.img_product);

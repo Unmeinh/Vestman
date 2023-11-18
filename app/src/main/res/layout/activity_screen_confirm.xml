@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".screen.Screen_confirm"
     android:orientation="vertical"
-    android:weightSum="12"
+    android:weightSum="11.5"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,8 +42,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8.5"
+        android:layout_weight="8"
+        android:orientation="vertical"
         >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/group3"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,15 +66,20 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:weightSum="10"
-        android:orientation="vertical">
+        android:background="@drawable/custom_background"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            >
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Subtotal"
                 android:textColor="@color/black"
@@ -74,10 +88,11 @@
                 android:gravity="center"
                 />
             <TextView
+                android:id="@+id/tv_confirm_total"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="15.100.000 VNĐ"
+                android:text="000"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -93,10 +108,10 @@
                 android:id="@+id/btn_n4"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:backgroundTint="#2E9DFF"
                 android:text="Confirm"
                 android:textStyle="bold"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:background="@drawable/bg_button"
                 />
         </LinearLayout>
