@@ -121,7 +121,8 @@ public class BillAdapter extends RecyclerView.Adapter<BillAdapter.ViewHolder> {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         callApiConfirmOrder(bill.get_id());
-
+                        mListBill.remove(bill);
+                        notifyDataSetChanged();
                     }
                 });
 

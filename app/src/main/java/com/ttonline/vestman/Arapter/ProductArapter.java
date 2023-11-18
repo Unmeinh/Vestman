@@ -35,8 +35,10 @@ import com.ttonline.vestman.models.YourRequestClass;
 import com.ttonline.vestman.screen.Screen_cart;
 import com.ttonline.vestman.screen.Screen_detailProduct;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,7 +93,9 @@ public class ProductArapter extends BaseAdapter {
         ProductModel productModel = (ProductModel) getItem(position);
         if (productModel != null) {
             holder.tv_name.setText(productModel.getName_product());
-            holder.tv_gia.setText(String.valueOf(productModel.getPrice()));
+            NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+            String total = format.format(productModel.getPrice());
+            holder.tv_gia.setText(total);
             Picasso.get().load(productModel.getImages().get(0)).into(holder.img_product);
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -142,7 +146,9 @@ public class ProductArapter extends BaseAdapter {
                     ImageView imgview = view.findViewById(R.id.imageView);
                     Picasso.get().load(productModel.getImages().get(0)).into(imgview);
                     name.setText(productModel.getName_product());
-                    price.setText(String.valueOf(productModel.getPrice()) + " VNĐ");
+                    NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+                    String total = format.format(productModel.getPrice());
+                    price.setText(total);
                     description.setText(productModel.getDetail_product());
                     Dialog dialog1 = builder.create();
                     btnback.setOnClickListener(new View.OnClickListener() {

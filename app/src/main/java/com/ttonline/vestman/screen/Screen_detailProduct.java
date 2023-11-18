@@ -21,8 +21,10 @@ import com.ttonline.vestman.models.ProductModel;
 import com.ttonline.vestman.models.ResMessage;
 import com.ttonline.vestman.models.YourRequestClass;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +80,9 @@ public class Screen_detailProduct extends AppCompatActivity {
             binding.color.setText("Mầu sắc: " + productModel.getColor());
             Picasso.get().load(productModel.getImages().get(0)).into(binding.imageView);
             binding.name.setText(productModel.getName_product());
-            binding.price.setText(String.valueOf(productModel.getPrice()) + " VNĐ");
+            NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+            String total = format.format(productModel.getPrice());
+            binding.price.setText(total);
             binding.detailProduct.setText(productModel.getDetail_product());
             binding.soluongdaban.setText("Số lượng dã bán: "+productModel.getQuantitySold());
             binding.soluong.setText("Số lượng còn lại: "+productModel.getQuantity());

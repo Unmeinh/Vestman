@@ -28,8 +28,10 @@ import com.ttonline.vestman.screen.Screen_cart;
 import com.ttonline.vestman.screen.Screen_detailProduct;
 import com.ttonline.vestman.screen.Screen_detailProductHotdeal;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,8 +88,12 @@ public class HotdealArapter extends BaseAdapter {
         if (productModel != null) {
             int gia= Integer.parseInt(String.valueOf(productModel.getPrice()));
             holder.tv_name.setText(productModel.getName_product());
-            holder.tv_gia_cu.setText(String.valueOf(productModel.getPrice()));
-            holder.tv_gia.setText(String.valueOf(gia-productModel.getId_discount().getValue()));
+            NumberFormat format = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+            String oldPrice = format.format(productModel.getPrice());
+            holder.tv_gia_cu.setText(oldPrice);
+
+            String newPrice = format.format(gia-productModel.getId_discount().getValue());
+            holder.tv_gia.setText(newPrice);
             Picasso.get().load(productModel.getImages().get(0)).into(holder.img_product);
 
 
