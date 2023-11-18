@@ -104,6 +104,31 @@
                 android:gravity="center"
                 >
             </TextView>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="1">
+               <TextView
+                   android:id="@+id/soluongdaban"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="Số lượng đã bán :"
+                   android:layout_marginBottom="5dp"
+
+                   >
+               </TextView>
+               <TextView
+                   android:id="@+id/soluong"
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="Số lượng còn lại:"
+                   android:layout_marginBottom="5dp"
+
+                   >
+               </TextView>
+           </LinearLayout>
             <TextView
                 android:id="@+id/color"
                 android:layout_width="match_parent"
@@ -120,7 +145,7 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="3"
                 android:layout_marginBottom="5dp"
                 >
                 <TextView

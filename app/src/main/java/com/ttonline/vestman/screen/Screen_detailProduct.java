@@ -45,6 +45,8 @@ public class Screen_detailProduct extends AppCompatActivity {
             Log.d("id product : ", productModel.get_id());
             Log.d("size product : ", String.valueOf(listsize));
             Log.d("name product : ", productModel.getName_product());
+            Log.d("quantity product : ", String.valueOf(productModel.getQuantity()));
+            Log.d("quantitySold product : ", String.valueOf(productModel.getQuantitySold()));
             Log.d("price product : ", String.valueOf(productModel.getPrice()));
             Log.d("discount : ", String.valueOf(productModel.getId_discount()));
             binding.btnboxchat.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +76,8 @@ public class Screen_detailProduct extends AppCompatActivity {
             binding.name.setText(productModel.getName_product());
             binding.price.setText(String.valueOf(productModel.getPrice()) + " VNĐ");
             binding.detailProduct.setText(productModel.getDetail_product());
+            binding.soluongdaban.setText("Số lượng dã bán: "+productModel.getQuantitySold());
+            binding.soluong.setText("Số lượng còn lại: "+productModel.getQuantity());
 
             binding.btnCancle.setOnClickListener(new View.OnClickListener() {
                 @Override
